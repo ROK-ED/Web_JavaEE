@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe.html</title>
+    <style>
+        div.menu {
+            display: inline-block;
+            width: 25%;
+            position: relative;
+            top: -350px;
+        }
+
+        div.content {
+            display: inline-block;
+            width: 70%;
+        }
+
+        ul{
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+            width: 90%;
+            height: 40px;
+            background-color: gray;
+            color: yellow;
+            font-size: 25px;
+            margin-bottom: 3px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <ul>
+            <li><a href="register.html" target="i_a">등록화면</a></li>
+            <li><a href="atag.html" target="i_a">A태그화면</a></li>
+            <li><a href="charref.html" target="i_a">char화면</a></li>
+            <li><a href="media.html" target="i_a">media화면</a></li>
+            <li><a href="resume.html" target="i_a">resume화면</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <iframe src="get.html" frameborder="1" width="80%" height="600px" name="i_a"></iframe>
+    </div>
+</body>
+
+</html>

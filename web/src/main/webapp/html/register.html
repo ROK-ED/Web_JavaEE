@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>register.html</title>
+</head>
+<body>
+	<fieldset>
+		<legend>회원가입</legend>
+		<form>
+			<table>
+				<tr>
+					<td>ID:</td>
+					<td><input type="text" name="id" value="user1" readonly></td>
+				</tr>
+				<tr>
+					<td>PW:</td>
+					<td><input type="password" name="pw" hidden></td>
+				</tr>
+				<tr>
+					<td>확인</td>
+					<td><input type="password" name="confirm_pw" disabled></td>
+				</tr>
+				<tr>
+					<td>성별</td>
+					<td><input type="radio" name="gend" checked>남 <input
+						type="radio" name="gend">여</td>
+				</tr>
+				<tr>
+					<td>취미</td>
+					<td><input type="checkbox" name="hobby" checked>운동 <input
+						type="checkbox" name="hobby" checked>여행 <input
+						type="checkbox" name="hobby" checked>독서</td>
+				</tr>
+				<tr>
+					<td>생일</td>
+					<td><input type="date" name="birth"></td>
+				</tr>
+				<tr>
+					<td>나이</td>
+					<td><input type="number" name="age"></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td><input type="text" name="email"> @
+					<select name="email2">
+					<option>naver.com</option>
+					<option>daum.net</option>
+					<option>google.com</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>메모</td>
+					<td><textarea placeholder="메모입력하세요..." name="memo" cols="30" rows="3"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<input type="submit" value="signup">
+					<input type="reset" value="reset">
+					<button><img src="https://mblogthumb-phinf.pstatic.net/MjAxNzA1MTZfMTM0/MDAxNDk0ODk5NjA5ODU3.9hCmxVngZF-YEre6GLPMU8mRWxarI0_ArV2PUBHiEuMg.PElRUpmO9qY5rUKtg2naNiFnOPDBFcXrd7Auyxv5v6Eg.JPEG.yeeeeeei/11.jpg?type=w800" width="30px" height="15px"></button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+</body>
+</html>

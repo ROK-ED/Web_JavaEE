@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>span속성</title>
+    <style>
+        table:nth-child(1) {
+            display: inline-block;
+            width: 140px;
+            height: 220px;
+        }
+
+        table:nth-child(2) {
+            display: inline-block;
+            width: 207px;
+            height: 240px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- column, rows 확장 -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th rowspan="2">이름</th>
+                <th>영어</th>
+                <th>수학</th>
+            </tr>
+            <tr>
+                <th>평균</th>
+                <th>합계</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">홍길동</td>
+                <td>80</td>
+                <td>90</td>
+            </tr>
+            <tr>
+                <td>85</td>
+                <td>170</td>
+            </tr>
+            <tr>
+                <td rowspan="2">김민수</td>
+                <td>80</td>
+                <td>90</td>
+            </tr>
+            <tr>
+                <td>85</td>
+                <td>170</td>
+            </tr>
+            <tr>
+                <td rowspan="2">박명진</td>
+                <td>80</td>
+                <td>90</td>
+            </tr>
+            <tr>
+                <td>85</td>
+                <td>170</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table border="1">
+        <caption>회원리스트</caption>
+        <thead>
+            <tr>
+                <th rowspan="2">이름</th>
+                <th colspan="2">연락처</th>
+            </tr>
+            <tr>
+                <th>집전화</th>
+                <th>휴대전화</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">홍길동</td>
+                <td colspan="2">대구 중구 100번지</td>
+            </tr>
+            <tr>
+                <td>111-2345</td>
+                <td>010-1234</td>
+            </tr>
+            <tr>
+                <td rowspan="2">김민수</td>
+                <td colspan="2">대구 중구 100번지</td>
+            </tr>
+            <tr>
+                <td>111-2345</td>
+                <td>010-1234</td>
+            </tr>
+            <tr>
+                <td rowspan="2">박명진</td>
+                <td colspan="2">대구 중구 100번지</td>
+            </tr>
+            <tr>
+                <td>111-2345</td>
+                <td>010-1234</td>
+            </tr>
+            
+        </tbody>
+        
+
+    </table>
+</body>
+
+</html>

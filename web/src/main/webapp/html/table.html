@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표 양식 만들기</title>
+    <style>
+        td>button:nth-child(1){
+            background-color: rgb(192, 226, 241);
+            border-top-color: rgb(210, 210, 243);
+            border-left-color: rgb(210, 210, 243);
+            border-bottom-color: cornflowerblue;
+            border-right-color: cornflowerblue;
+        }
+        td>button:nth-child(2){
+            background-color: rgb(243, 166, 166);
+            border-top-color: rgb(241, 198, 198);
+            border-left-color: rgb(241, 198, 198);
+            border-bottom-color: rgb(255, 0, 0);
+            border-right-color: rgb(255, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- table -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>[상품번호]상품명</th>
+                <th>판매가격</th>
+                <th>공급가경</th>
+                <th>수정/삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>[3]럭셔리 머플러 세트 니트GR</td>
+                <td>10,000</td>
+                <td>1000</td>
+                <td><button>수정</button><button>삭제</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>[1]더블유닷WX8MU5840</td>
+                <td>84,000</td>
+                <td>1000</td>
+                <td><button>수정</button><button>삭제</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>[2]더블유닷WX8MT8410</td>
+                <td>72,000</td>
+                <td>1000</td>
+                <td><button>수정</button><button>삭제</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>[12]올리브데올리브OW8AE3380</td>
+                <td>118,000</td>
+                <td>1000</td>
+                <td><button>수정</button><button>삭제</button></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
