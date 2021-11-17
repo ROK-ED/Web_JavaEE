@@ -7,33 +7,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        * {
+            /*전체범위*/
+            box-sizing: border-box;
+            font-size: 13px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            /*폰트 우선순위 첫번째 폰트가 없으면 두번째로 ...*/
+        }
+
         .container {
             width: 90%;
             border: 1px solid red;
+            height: 355px;
+            margin: 0 auto;
         }
 
         .image {
-            border: 1px solid blue;
+            border: 2px solid gray;
             display: inline-block;
-            width: 40%;
+            width: 42%;
+            margin-top: 0;
+            margin-right: 2%;
+            padding: 20px 0;
         }
 
         .large {
             display: inline-block;
             width: 60%;
+            /* border: 1px solid red; */
         }
 
         .small {
             display: inline-block;
-            width: 35%;
+            width: 25%;
+            /* border: 1px solid green; */
         }
 
         .content {
             display: inline-block;
-            border: 1px solid green;
+            /* border: 1px solid green; */
             width: 55%;
             height: 360px;
+            position: relative;
+            top: -25px;
         }
+
+        .content>div {
+            margin-bottom: 5px;
+        }
+
+        .content .label {
+            /*.content( )/*스페이스바를 하면 하위중에 알아서 찾음.label */
+            display: inline-block;
+            width: 20%;
+            /* background-color: yellow; */
+            font-weight: bold;
+            /* padding-left: 10px;
+            padding-top: 3px;
+            padding-bottom: 3px; */
+            padding: 3px 0 3px 10px;
+
+        }
+
+        div.content div.item {
+            display: inline-block;
+            width: 60%;
+        }
+
+        #product {
+            font-size: 1.3em;
+            /*em 기준되는 글자 픽셀의 배수*/
+        }
+
+
+        /*속성 선택자 p.211--------------------------------------------------------------*/
+        img[height] {
+            border: 1px solid gray;
+        }
+
+        img[width="100px"] {
+            border: 2px dashed red;
+        }
+
+        div[class$="two"] {
+            /*$= 값중에 끝나는*/
+            background-color: blue;
+        }
+
+        div[class~="odd"] {
+            /*~= 값중에 포함하면*/
+            background-color: yellow;
+        }
+
+        div[class^="one"] {
+            /*~= 값중에 시작*/
+            background-color: green;
+        }
+
+        div[class*="em"] {
+            /* *= 값중에 들어가는*/
+            background-color: paleturquoise;
+        }
+
+
+        /*가상 선택자 p.213---------------------------------------------------------------------------------*/
+        a:hover{
+            /*가상선택자 마우스가 올라갈때*/
+            background-color: yellow;
+            color: red;
+        }
+
+        a:visited{
+            /*방문했던 사이트 표시법*/
+            color: violet;
+        }
+
+        a:active{
+            /*클릭할때*/
+            font-size: 1.3em;
+        }
+
+        input:focus{
+            /*클릭해둔상태일때*/
+            background-color: red;
+        }
+
+        .content > div:hover{
+            background-color: yellowgreen;
+        }
+
+
     </style>
 </head>
 
@@ -41,50 +144,51 @@
     <div class="container">
         <div class="image">
             <div class="large">
-                <img height="300px" width="200px" src="../images/large.PNG" alt="">
+                <img height="306px" width="243px" src="../images/large.PNG" alt="">
             </div>
             <div class="small">
-                <img width="120px" src="../images/small_1.PNG" alt="">
-                <img width="120px" src="../images/small_2.PNG" alt="">
-                <img width="120px" src="../images/small_3.PNG" alt="">
+                <img width="100px" src="../images/small_1.PNG" alt="">
+                <img width="100px" src="../images/small_2.PNG" alt="">
+                <img width="100px" src="../images/small_3.PNG" alt="">
             </div>
         </div>
         <div class="content">
-            <div>(AD) 50211-CM 아동투톤체크방울머플러</div>
+            <div><input type="text"></div>
+            <div id="product"><a href="https://www.daum.net">(AD) 50211-CM 아동투톤체크방울머플러</a></div>
             <div>
-                <div class="label">판매가</div>
+                <div class="label odd">판매가</div>
                 <div class="item">15,000</div>
             </div>
             <div>
-                <div class="label">구매제한</div>
+                <div class="one label even">구매제한</div>
                 <div class="item">최소 1개</div>
             </div>
             <div>
-                <div class="label">배송비</div>
+                <div class="label odd">배송비</div>
                 <div class="item">2,500원 택배/ 주문시결제(선결제)</div>
             </div>
             <div>
-                <div class="label">상품코드</div>
+                <div class="label even two">상품코드</div>
                 <div class="item">100000242</div>
             </div>
             <div>
-                <div class="label">브랜드</div>
+                <div class="label odd">브랜드</div>
                 <div class="item">MILLITAGE</div>
             </div>
             <div>
-                <div class="label">원산지</div>
+                <div class="label even">원산지</div>
                 <div class="item">made in chaina</div>
             </div>
             <div>
-                <div class="label">샘플가격</div>
+                <div class="label odd">샘플가격</div>
                 <div class="item">샘플(1개) 구매가능</div>
             </div>
             <div>
-                <div class="label">결제수단</div>
+                <div class="label even">결제수단</div>
                 <div class="item">무동장입금, 신용카드, 실시간계좌이체</div>
             </div>
             <div>
-                <div class="label">VAT</div>
+                <div class="label odd">VAT</div>
                 <div class="item">10%별도</div>
             </div>
 

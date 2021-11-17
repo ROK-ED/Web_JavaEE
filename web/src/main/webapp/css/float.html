@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/float.html p.252</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            /*박스크기를 보더까지 포함해라*/
+            margin: 0;
+        }
+
+        div {
+            border: 2px solid red;
+            height: 100px;
+        }
+
+        div.header {
+            background-color: lawngreen;
+        }
+
+        div.left {
+            background-color: lightgreen;
+            display: inline-block;
+            width: 33.3%;
+            float: left;
+        }
+
+        div.center {
+            background-color: rgb(177, 233, 177);
+            display: inline-block;
+            width: 33.4%;
+            float: left;
+
+        }
+
+        div.right {
+            background-color: lime;
+            /* display: inline-block; */
+            width: 33.3%;
+            float: left;
+
+        }
+
+        div.footer {
+            background-color: mediumspringgreen;
+            width: 100%;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        &lt;header&gt;
+    </div>
+
+    <div class="left">
+        <ul>
+            <li>menu1</li>
+            <li>menu2</li>
+            <li>menu3</li>
+        </ul>
+    </div>
+
+    <div class="center">
+
+    </div>
+
+    <div class="right">
+        <img src="../images/8.png" alt="">
+
+    </div>
+
+    <div class="footer">
+
+    </div>
+</body>
+
+</html>

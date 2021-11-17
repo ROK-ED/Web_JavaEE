@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/covid.html</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 1px solid gray;
+            /*여백삭제*/
+            /*separate 셀 하나하나당 여백이 생김*/
+        }
+
+        th,
+        td {
+            border: 0.5px solid gray;
+            padding: 8px 20px;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        thead>tr:nth-child(3) {
+            color: rgb(43, 43, 146);
+
+        }
+
+        thead>tr:nth-child(3)>th {
+            border-bottom-style: dotted;
+            border-bottom-width: 1px;
+            border-bottom-color: blue;
+        }
+
+        thead>tr:nth-child(3)>th:not(:nth-child(1)) {
+            /*not안은 조건제외*/
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        thead>tr:nth-child(1)>th {
+            border-top: gray;
+            border-top-width: 2px;
+            border-top-style: solid;
+        }
+
+        tbody>tr>td:nth-child(1) {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        tbody>tr>td:not(:nth-child(1)) {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        tbody>tr:nth-child(2n){
+            background-color: honeydew;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <section>
+        <table>
+            <thead>
+
+                <tr>
+                    <th rowspan="2">구분</th>
+                    <th colspan="2">1차접종</th>
+                    <th colspan="2">접종완료</th>
+                    <th colspan="2">추가접종</th>
+                </tr>
+                <tr>
+                    <th>당일접종</th>
+                    <th>당일누계</th>
+                    <th>당일실적</th>
+                    <th>당일누계</th>
+                    <th>당일실적</th>
+                    <th>당일누계</th>
+                </tr>
+                <tr>
+                    <th>합계</th>
+                    <th>33,249</th>
+                    <th>42,062,748</th>
+                    <th>46,728</th>
+                    <th>4,243,219</th>
+                    <th>136,485</th>
+                    <th>1,342,176</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>서울특별시강남구보건소</td>
+                    <td>360</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+                <tr>
+                    <td>서울특별시강동구보건소</td>
+                    <td>241</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+                <tr>
+                    <td>서울특별시강북구보건소</td>
+                    <td>181</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+                <tr>
+                    <td>서울특별시강서구보건소</td>
+                    <td>326</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+                <tr>
+                    <td>서울특별시관악구보건소</td>
+                    <td>351</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+                <tr>
+                    <td>서울특별시광진구보건소</td>
+                    <td>148</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+                <tr>
+                    <td>서울특별시구로구보건소</td>
+                    <td>293</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+                <tr>
+                    <td>서울특별시금천구보건소</td>
+                    <td>157</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+                <tr>
+                    <td>서울특별시노원구보건소</td>
+                    <td>297</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+                <tr>
+                    <td>서울특별시도봉구보건소</td>
+                    <td>171</td>
+                    <td>407,166</td>
+                    <td>520</td>
+                    <td>389,204</td>
+                    <td>1,220</td>
+                    <td>12,056</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </section>
+
+</body>
+
+</html>
