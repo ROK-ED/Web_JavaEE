@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/m.html</title>
+    <link rel="stylesheet" href="mstyle.css">
+</head>
+
+<body>
+    <header>
+        <a href=" "><img src="../images/ch.png" alt="home"></a>
+        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">로그인</button>
+        <button>상품문의</button>
+        <button>게시판</button>
+    </header>
+    <nav>맛집
+        <ul>메뉴
+            <li><a href="m1.html" target="if">커피</a></li>
+            <li><a href="m2.html" target="if">빵</a></li>
+            <li><a href="main.html" target="if">3</a></li>
+            <li><a href="main.html" target="if">4</a></li>
+        </ul>
+    </nav>
+    <section>
+        <iframe src=" " frameborder="1" width="99%" height="99%" name="if"></iframe>
+    </section>
+    <aside>
+        aside
+    </aside>
+    <footer>
+        footer
+    </footer>
+
+</body>
+
+<div id="id01" class="modal">
+
+    <form class="modal-content animate" action="/action_page.php" method="post">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                title="Close Modal">&times;</span>
+            <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/grid.html</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        div.wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /*fr 전체기준 비율*/
+            /*repeat(3, 1fr); = 1fr 1fr 1fr; 동일*/
+            grid-template-rows: 100px 200px 100px;
+        }
+
+        div.item {
+            border: 2px solid gray;
+        }
+
+        div.item1{
+            grid-column: 1/5;
+        }
+
+        div.item2{
+            grid-column: 1/2;
+            /* grid-row: 2/3; */
+        }
+
+        div.item3{
+            grid-column: 2/4;
+            /* grid-row: 2/3; */
+        }
+
+        div.item4{
+            grid-column: 4/5;
+            /* grid-row: 2/3; */
+        }
+
+        div.item5{
+            grid-column: 1/5;
+        }
+
+        /* div.wrapper>p{
+            grid-column: 3/4;
+            border: 1px solid gray;
+        } */
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="item item1">item1</div>
+        <div class="item item2">item2
+            <ul>
+                <li>menu1</li>
+                <li>menu2</li>
+                <li>menu3</li>
+                <li>menu4</li>
+            </ul>
+        </div>
+        <div class="item item3">item3
+            <p>contents</p>
+        </div>
+        <div class="item item4">item4
+            <p>aside</p>
+        </div>
+        <div class="item item5">item5
+            <p>footer</p>
+        </div>
+        <!-- <p>item6</p> -->
+    </div>
+</body>
+
+</html>
