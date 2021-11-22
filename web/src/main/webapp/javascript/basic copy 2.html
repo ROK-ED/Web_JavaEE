@@ -28,10 +28,10 @@
 
 
     <script>
-        function getIdFunc(){
+        function getIdFunc() {
             var userId = document.getElementById('user_id');
             console.log(userId.value);
-        
+        }
 
 
         //데이터
@@ -65,41 +65,48 @@
         //         }
         //     }
 
-
-        var divT = document.createElement('div');
-        var tblT = document.createElement('table');
-        tblT.setAttribute('border', '1');
-        var thdT = document.createElement('thead');
-        var tbdT = document.createElement('tbody');
-        // 타이틀 부분 생성
-        var trT = document.createElement('tr');
-        for (var val in students[0]) {
-            var tdT = document.createElement('td');
-            tdT.textContent = val;
-            trT.appendChild(tdT);
-        }
-        thdT.appendChild(trT);
-        tblT.appendChild(thdT);
-        //데이터 부분 생성
-        for (var obj of students) {
-            var trT = document.createElement('tr');
-            for (var field in obj) {
-                var tdT = document.createElement('td');
-                tdT.textContent = obj[field];
-                trT.appendChild(tdT);
+        function drawTable() {
+            // var divT = document.createElement('div');
+            var table = document.createElement('table');
+            table.setAttribute('border', '1');
+            var thead = document.createElement('thead');
+            // 타이틀 부분 생성
+            var tr = document.createElement('tr');
+            for (var val in students[0]) {
+                var th = document.createElement('th');
+                th.textContent = val;
+                tr.appendChild(th);
             }
-            tbdT.appendChild(trT);
-        }
-        tblT.appendChild(tbdT);
-        divT.appendChild(tblT);
-        console.log(divT);
-        var bd = document.getElementsByTagName('body');
-        bd[0].appendChild(divT);
-    
+            thead.appendChild(tr);
+            table.appendChild(thead);
+            
+            //데이터 부분 생성
+            var tbody = document.createElement('tbody');
+            for (student of students) {
+                var tr = document.createElement('tr');
+                for (var field in student) {
+                    var td = document.createElement('td');
+                    td.textContent = student[field];
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            }
+            table.appendChild(tbody);
+           
+            // divT.appendChild(table);
+            // console.log(divT);
+            // var bd = document.getElementsByTagName('body');
+            // bd[0].appendChild(divT);
 
-        // 화면에 보여주기
-        // var divShow = document.getElementById('show'); //document.getElementsByTagName('div');
-        // divShow.appendChild(thdT);
+
+            // 화면에 보여주기
+        //     var divShow = document.getElementById('show'); //document.getElementsByTagName('div');
+        //     divShow.appendChild(thdT);
+        // }
+        var divShow = document.getElementsByTagName('div');
+            divShow[0].appendChild(table);
+
+
         }
     </script>
     <!-- <script src="dom.js"></script> -->

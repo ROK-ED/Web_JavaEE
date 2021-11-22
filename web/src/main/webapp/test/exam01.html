@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시험</title>
+    <style>
+        /* 칸나누기 */
+        body {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 15vh 24vh 44vh 13vh;
+            
+
+        }
+
+        header,
+        footer {
+            grid-column: 1/3;
+
+        }
+
+        section {
+            grid-column: 1/2;
+            grid-row: 2/4;
+        }
+
+        aside {
+            grid-column: 2/3;
+            grid-row: 2/3;
+        }
+
+        /* 옵션 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            /* border: 0.5px solid rgba(128, 128, 128, 0.26); */
+        }
+
+        body{
+            margin: 5px;
+            padding: 15px;
+            border: red 1.5px solid;
+        }
+
+        header {
+            margin: 5px;
+            padding: 15px;
+            background-color: rgb(211, 76, 223);
+            border: skyblue 1.5px solid;
+        }
+
+        header a {
+            position: relative;
+            top: 2vh;
+            right: -4vw;
+            margin-left: 25px;
+
+        }
+
+        header a:link,
+        header a:visited {
+            text-decoration: none;
+            color: rgb(47, 56, 46);
+        }
+
+        section {
+            margin: 5px;
+            padding: 15px;
+            border: gray 1.5px solid;
+        }
+
+        section>article {
+            display: inline-block;
+            width: 56vw;
+        }
+
+        section>article:nth-child(1) {
+            margin-top: 3vh;
+        }
+
+        section>article h3 {
+            margin: 10px 0;
+        }
+
+        section>article:nth-child(1)>p {
+            background-color: yellow;
+            position: relative;
+            right: -2vw;
+
+        }
+
+        table{
+            position: relative;
+            right: -2vw;
+            width: 56vw;
+            text-align: center;
+        }
+
+        thead {
+            
+            background-color: blue;
+            color: white;
+        }
+
+        .one{
+            background-color: rgb(183, 221, 236);
+        }
+
+        .two{
+            background-color: rgb(81, 175, 212);
+        }
+
+        tbody>tr>td:nth-child(1){
+            width: 3vw;
+        }
+
+        tbody>tr>td:nth-child(3){
+            width: 5vw;
+        }
+
+        aside{
+            
+            display: inline-block;
+            margin: 5px;
+            padding: 15px;
+            background-color: rgb(209, 209, 209);
+            border: gray 1.5px solid;
+           
+            
+        }
+
+        aside h2{
+            margin: 5px;
+            padding: 5px;
+        }
+        aside p{
+            margin: 5px;
+            padding: 5px;
+        }
+
+        footer{
+            margin: 5px;
+            padding: 15px;
+            border: gray 1.5px solid;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="wrapper"> -->
+
+    <header>
+        <h1> ONLINE SSAFY </h1>
+        <div class="menu">
+            <a href="#">메뉴1</a>
+            <a href="#">메뉴2</a>
+            <a href="#">메뉴3</a>
+            <a href="#">메뉴4</a>
+        </div>
+    </header>
+    <section>
+        <article>
+            <h3>기사 1</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Pariatur architecto hic optio ullam voluptate placeat unde officiis tenetur,
+                autem ea ducimus illum, beatae iusto nam. Neque, laborum similique. Incidunt, aspernatur.
+                <br>
+                <br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Pariatur architecto hic optio ullam voluptate placeat unde officiis tenetur,
+                autem ea ducimus illum, beatae iusto nam. Neque, laborum similique. Incidunt, aspernatur.
+            </p>
+
+        </article>
+        <article>
+            <h3>기사 2</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="one">
+                        <td>1</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>강감찬</td>
+                    </tr>
+                    <tr class="two">
+                        <td>2</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>장영실</td>
+                    </tr>
+                    <tr class="one">
+                        <td>3</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>안중근</td>
+                    </tr>
+                    <tr class="two">
+                        <td>4</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>김두한</td>
+                    </tr>
+                    <tr class="one">
+                        <td>5</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>계백</td>
+                    </tr>
+                    <tr class="two">
+                        <td>6</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>최무선</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <aside>
+        <h2>SIDERBAR</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Pariatur architecto hic optio ullam voluptate placeat unde officiis tenetur,
+           </p>
+    </aside>
+    <footer>
+        <h2>Footer</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </footer>
+    <!-- </div> -->
+</body>
+
+</html>
