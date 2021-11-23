@@ -6,107 +6,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>javascript/basic.html</title>
-    <link rel="stylesheet" href="calender.css">
+    <!-- <link rel="stylesheet" href="calender.css"> -->
     <!-- <script src="basic.js"></script> -->
     <!-- <script src="function.js"></script> -->
     <!-- <script src="function2.js"></script> -->
     <!-- <script src="calender.js"></script> -->
+
     <script>
+        var fruits = ['Apple','Banana','Cherry'];
+        // console.log('1');
+        window.addEventListener('DOMContentLoaded', function () {
+            // DOMContentLoaded 이걸 다 읽은 다음에(페이지를 다 읽은 다음) 실행 
+            // console.log('2');//마지막에 실행되는걸 확인
+            var show = document.getElementById('show');
+            // console.log(show);
+            console.log(show.textContent);//id는 유일
 
+            var shows = document.getElementsByTagName('div');
+            console.log(shows[2].textContent); // Collection: ~//메소드는 유일하지 않아 배열을 제시해야함
 
+            var cls = document.getElementsByClassName('show');
+            console.log(cls[0].textContent);//클래스는 유일하지 않아 배열을 제시해야함
+
+            var selector = document.querySelector('#show');//css에서 요소를 선택
+            console.log(selector);
+
+            var selector2 = document.querySelector('.show:nth-child(3)');//해당되는 값을 출력
+            console.log(selector2);
+
+            var selector3 = document.querySelectorAll('.show');//해당되는 값을 전부 출력
+            console.log(selector3);
+
+            var selector4 = document.querySelectorAll('div.show');//해당되는 값을 전부 출력
+            console.log(selector4);
+
+            var selector5 = document.querySelectorAll('ol>li');//해당되는 값을 전부 출력
+            console.log(selector5);
+            selector5[0].textContent = '사과';
+
+            var li = document.createElement('li');
+            li.textContent = "Melon";
+
+            var ol = document.querySelector('ol');
+            ol.appendChild(li);
+
+            var div = document.createElement('div');
+            
+            var divL = document.createElement('div');
+            divL.setAttribute("id","last");
+            divL.textContent = "Last";
+            div.appendChild(divL);
+            ol.appendChild(div);
+
+            console.log(div);
+
+        });
+        // console.log('3');
+        
     </script>
 </head>
 
 <body>
-    <input type="text" id="user_id" value=12345><br>
-    <button onclick="getIdFunc()">id값 가져오기</button>
+    <!-- <input type="text" id="user_id" value=12345><br>
+    <button onclick="getIdFunc()">id값 가져오기</button> -->
     <!-- <button onclick="createCalender(2021, 11)">클릭</button> -->
-    <button onclick="createList()">클릭</button>
-    <button onclick="drawTable()">클릭</button>
-    <div id="show">
-        
-    </div>
+    <!-- <button onclick="createList()">클릭</button>
+    <button onclick="drawTable()">클릭</button> -->
+    <div id="show">Hello1</div>
+    <div class="show">Hello2</div>
+    <div class="show">Hello3</div>
+    <p class="show">Hello4</p>
+    <ul>
+        <li id="apple">Apple</li>
+        <li id="banana">Banana</li>
+        <li id="cherry">Cherry</li>
+    </ul>
 
-
-
-    <script>
-        function getIdFunc(){
-            var userId = document.getElementById('user_id');
-            console.log(userId.value);
-        }
-
-
-        //데이터
-        var students = [{
-                name: "홍길동",
-                math: 80,
-                eng: 90,
-                grade: '1학년 1반',
-                avg: 85
-            },
-            {
-                name: "김수미",
-                math: 85,
-                eng: 85,
-                grade: '1학년 2반',
-                avg: 85
-            },
-            {
-                name: "김민수",
-                math: 90,
-                eng: 75,
-                grade: '1학년 3반',
-                avg: 82.5
-            }
-        ];
-
-        // function drowTable() {
-        //     for (var obj of students) {
-        //         for (var field in obj) {
-        //             console.log(`${field},${obj[field]}`);
-        //         }
-        //     }
-
-        function drawTable() {
-        // var divT = document.createElement('div');
-        var tblT = document.createElement('table');
-        tblT.setAttribute('border', '1');
-        
-        // 타이틀 부분 생성
-        var thdT = document.createElement('thead');
-        var trT = document.createElement('tr');
-        for (var val in students[0]) {
-            var thT = document.createElement('th');
-            thT.textContent = val;
-            trT.appendChild(thT);
-        }
-        thdT.appendChild(trT);
-        tblT.appendChild(thdT);
-
-        //데이터 부분 생성
-        var tbdT = document.createElement('tbody');
-        for (var obj of students) {
-            var trT = document.createElement('tr');
-            for (var field in obj) {
-                var tdT = document.createElement('td');
-                tdT.textContent = obj[field];
-                trT.appendChild(tdT);
-            }
-            tbdT.appendChild(trT);
-        }
-        tblT.appendChild(tbdT);
-        // divT.appendChild(tblT);
-        // console.log(divT);
-        // var bd = document.getElementsByTagName('body');
-        // bd[0].appendChild(divT);
+    <ol>
+        <li id="apple">Apple</li>
+        <li id="banana">Banana</li>
+        <li id="cherry">Cherry</li>
+    </ol>
+<!-- 
+    <div>
+        <div id="last">Last</div>
+    </div> -->
     
 
-        // 화면에 보여주기
-        var divShow = document.getElementById("show"); //document.getElementsByTagName('div');
-        divShow.appendChild(tblT);
-        }
+    <script>
+        // console.log('4');
     </script>
     <!-- <script src="dom.js"></script> -->
+    <!-- <script src="dom2.js"></script> -->
 </body>
 
 </html>

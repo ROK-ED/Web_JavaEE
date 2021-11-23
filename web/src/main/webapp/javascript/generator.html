@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/generator.html</title>
+
+    <script>
+        var data =
+            `
+        [{"id":1,"first_name":"Etta","last_name":"Flips","email":"eflips0@ning.com","gender":"Female","salary":12606},
+        {"id":2,"first_name":"Sara","last_name":"Loughran","email":"sloughran1@engadget.com","gender":"Female","salary":7900},
+        {"id":3,"first_name":"Lem","last_name":"Royan","email":"lroyan2@behance.net","gender":"Male","salary":11017},
+        {"id":4,"first_name":"Bethina","last_name":"Merrgen","email":"bmerrgen3@businessweek.com","gender":"Female","salary":11792},
+        {"id":5,"first_name":"Vachel","last_name":"Tench","email":"vtench4@51.la","gender":"Female","salary":8982},
+        {"id":6,"first_name":"Thorn","last_name":"Sandels","email":"tsandels5@rakuten.co.jp","gender":"Male","salary":4393},
+        {"id":7,"first_name":"Dari","last_name":"Ferencz","email":"dferencz6@tuttocitta.it","gender":"Male","salary":4397},
+        {"id":8,"first_name":"Chevy","last_name":"Graser","email":"cgraser7@oracle.com","gender":"Male","salary":12521},
+        {"id":9,"first_name":"Marchelle","last_name":"Durham","email":"mdurham8@upenn.edu","gender":"Male","salary":9501},
+        {"id":10,"first_name":"Maxie","last_name":"Darrigoe","email":"mdarrigoe9@usatoday.com","gender":"Male","salary":11075}]
+        `;
+
+        var employees = JSON.parse(data); //json문자열  => javascript object로 변경.
+        // console.log(employees[0]);
+
+        var genderEmp = [];
+
+        // var fields = ['id', 'first_name', 'last_name', 'email', 'gender', 'salary']
+        var fields = ['id', 'first_name', 'last_name', 'salary', 'email', 'gender']
+
+        window.addEventListener('DOMContentLoaded', onLoadFnc);
+
+        function onLoadFnc() {
+            // 표형식으로 리스트 출력.
+            var table = document.createElement('table');
+            table.setAttribute('border', '1');
+            table.setAttribute('id', 'tbl');
+            var thead = makeHead();
+            var tbody = makeBody(employees);
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            var parent = document.getElementById('show');
+            parent.appendChild(table);
+
+            //radio버튼에 이벤트 등록.
+            var radios = document.querySelectorAll('div>input[type="radio"]');
+            // console.log(radios);
+            for (var radio of radios) {
+                radio.onchange = onChangeFunc;
+                // radio.onchange = function () {
+                //     // console.log(this);
+                //     var gender = this.value;
+                //     genderEmp = employees.filter(item => item.gender == gender);
+                //     // console.log(genderEmp);
+                //     document.getElementById('tbd').remove();
+
+
+                //     // var tbody = document.createElement('tbody');
+                //     // tbody.setAttribute('id', 'tbd');
+                //     // //data건수만큼 반복처리.
+                //     // genderEmp.forEach(item => {
+
+                //     //     // var tr = makeTr(item);
+                //     //     // tbody.appendChild(tr)
+                //     //     tbody.appendChild(makeTr(item));
+
+                //     // });
+                //     // document.getElementById('tbl').appendChild(tbody);
+                //     document.getElementById('tbl').appendChild(makeBody(genderEmp));
+                // }
+            }
+            //버튼에 조회 기능 추가.
+            // var buttons = document.querySelectorAll('#serchBtn');
+            var buttons =document.getElementById('serchBtn');
+            buttons.onclick=salaryClickFnc;
+            
+
+        }
+
+        function salaryClickFnc(e){
+            // var serchSalarys =document.querySelectorAll('#serchSalary');
+            // <input type="number" name="" id="serchSalary">
+            console.log(this);
+            serchSalarys = this.value;
+        }
+
+        //onChange이벤트의 콜백함수.
+        function onChangeFunc() {
+            // console.log(this);
+            var gender = this.value;
+            genderEmp = employees.filter(item => item.gender == gender);
+            // console.log(genderEmp);
+            document.getElementById('tbd').remove();
+
+
+            // var tbody = document.createElement('tbody');
+            // tbody.setAttribute('id', 'tbd');
+            // //data건수만큼 반복처리.
+            // genderEmp.forEach(item => {
+
+            //     // var tr = makeTr(item);
+            //     // tbody.appendChild(tr)
+            //     tbody.appendChild(makeTr(item));
+
+            // });
+            // document.getElementById('tbl').appendChild(tbody);
+            document.getElementById('tbl').appendChild(makeBody(genderEmp));
+
+        }
+
+        function makeBody(ary) {
+            var tbody = document.createElement('tbody');
+            tbody.setAttribute('id', 'tbd');
+            //data건수만큼 반복처리.
+            ary.forEach(item => {
+
+                // var tr = makeTr(item);
+                // tbody.appendChild(tr)
+                tbody.appendChild(makeTr(item));
+
+            });
+            return tbody;
+        }
+
+        function makeTr(employee) {
+            var tr = document.createElement('tr');
+            fields.forEach(field => {
+                var td = document.createElement('td');
+                td.textContent = employee[field];
+                tr.appendChild(td);
+            });
+            return tr;
+        }
+
+        function makeHead() {
+            var thead = document.createElement('thead'); // tr>td.td.td.td.
+            var tr = document.createElement('tr');
+
+            // for(var field of fields){
+            //     var th = document.createElement('th');
+            //     th.textContent = field;
+            //     tr.appendChild(th);
+            // }
+            fields.forEach(item => {
+                var th = document.createElement('th');
+                th.textContent = item;
+                tr.appendChild(th);
+            });
+
+            thead.appendChild(tr);
+            return thead;
+        }
+    </script>
+
+</head>
+
+<body>
+    <div>
+        남자 <input type="radio" name="gender" value="Male">
+        여자 <input type="radio" name="gender" value="Female">
+        <input type="number" name="" id="serchSalary">
+        <button id="serchBtn">조회</button>
+    </div>
+    <div id="show"></div>
+    <!-- <script src="generator.js"></script> -->
+</body>
+
+</html>
