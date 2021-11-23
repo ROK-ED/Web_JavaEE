@@ -80,10 +80,16 @@
         }
 
         function salaryClickFnc(e){
-            // var serchSalarys =document.querySelectorAll('#serchSalary');
-            // <input type="number" name="" id="serchSalary">
-            console.log(this);
-            serchSalarys = this.value;
+            var serchSalarys = document.getElementById('serchSalary');
+            // console.log(serchSalarys.value);
+            var a = employees.filter(item => item.salary == serchSalarys.value );
+            console.log(a);
+            document.getElementById('tbd').remove();
+
+            document.getElementById('tbl').appendChild(makeBody(a));
+
+
+            
         }
 
         //onChange이벤트의 콜백함수.
