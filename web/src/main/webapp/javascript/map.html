@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map.html p.387</title>
+    <script src="data.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            //filter
+            var filterAry = dataAry.filter((item, ind, ary) => {
+                return item.salary > 10000;
+
+            });
+
+            // var div = document.getElementById('show');
+            // filterAry.forEach((item, ind, ary) => {
+            //     console.log(item, ind, ary);
+            //     var p = document.createElement('p');
+            //     p.textContent = item.first_name;
+            //     div.appendChild(p);
+            // });
+
+            //map
+            // var mapAry = filterAry.map((item, ind, ary) => {
+            //     return item.first_name;
+            // });
+            // console.log(mapAry);
+
+            var mapAry = filterAry.map((item, ind, ary) => {
+                var obj = {};
+                obj.name = item.first_name + ' ' + item.last_name;
+                obj.sal = item.salary;
+                return obj;
+            });
+            console.log(mapAry);
+
+            var div = document.getElementById('show');
+            mapAry.forEach((item, ind, ary) => {
+                console.log(item, ind, ary);
+                var p = document.createElement('p');
+                p.textContent = item.name;
+                div.appendChild(p);
+            });
+
+
+            //forEach
+            // var div = document.getElementById('show');
+            // dataAry.forEach((item, ind, ary) => {
+            //     console.log(item, ind, ary);
+            //     var p = document.createElement('p');
+            //     p.textContent = item.first_name;
+            //     div.appendChild(p);
+            // });
+
+            console.clear();
+            console.log('---------------------------')
+            //join
+            filterAry = dataAry.filter(item => {
+                return item.salary > 10000;
+            })
+            .map(item => {
+                return item.salary;
+            })
+            .join(',');
+            // filterAry.map();
+            // var str = filterAry.join(',');
+            // console.log(str);
+            console.log(filterAry);
+
+            console.clear();
+            //split
+            var newAry = filterAry.split(',');
+            console.log(newAry);
+
+
+        });
+        // console.log(dataAry);
+    </script>
+</head>
+
+<body>
+
+    <div id="show">
+
+    </div>
+
+</body>
+
+</html>

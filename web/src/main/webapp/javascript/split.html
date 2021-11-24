@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>split.html</title>
+    <style>
+        #show {
+            width: 500px;
+            height: 230px;
+            border: 2px solid gray;
+        }
+
+        .item {
+            display: inline-block;
+            width: 110px;
+            background-color: yellow;
+            border: 1px solid blue;
+            margin: 1px;
+        }
+
+        .clear {
+            display: inline-block;
+            width: 110px;
+            background-color: white;
+            color: white;
+            border: 1px solid blue;
+            margin: 1px;
+        }
+
+        #timer {
+            display: inline-block;
+            width: 50px;
+            background-color: rgb(117, 117, 107);
+            color: white;
+            text-align: right;
+            padding-right: 3px;
+        }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            console.log(this);
+            var str =
+                `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis mollitia nihil quos vero nam incidunt, laudantium odio ratione possimus, delectus asperiores iste molestias veniam nulla minus dolore impedit explicabo ut.`
+            var strAry = str.split(' ');
+            console.log(strAry);
+            // var strAry2 = str.replace('.','').replace(',','');
+            // console.log(strAry2);
+            var show = document.getElementById('show');
+            strAry.forEach(item => {
+                var div = document.createElement('div');
+                div.setAttribute('class', 'item')
+
+                // div.textContent = item;
+                var textNode = document.createTextNode(item);
+                div.appendChild(textNode);
+
+                show.appendChild(div);
+            });
+
+
+            //시간변경.   setInterval(콜백함수, ms)
+            var remainTime = 200;
+            document.getElementById('timer').textContent = remainTime;
+            var interval = setInterval(function () {
+                document.getElementById('timer').textContent = --remainTime;
+                if (!remainTime /*remainTime == 0*/ ) { //javascript 에선 0 
+                    var items = document.querySelectorAll('.item');
+                    if (!items.length) {
+                        alert('success');
+                    } else {
+                        alert('fail');
+                    }
+                    clearInterval(interval);
+                }
+            }, 1000)
+
+        });
+
+        function removeItem(e) {
+            console.log('onchange');
+            var val = e.target.value;
+            var items = document.querySelectorAll(".item");
+            items.forEach(item => {
+                if (item.textContent == val) {
+                    item.setAttribute('class', 'clear');
+                }
+            });
+            e.target.value = "";
+        }
+
+        function removeItem2() {
+            console.log('onkeyup');
+        }
+
+        function addItem(e) {
+            var val = e.target.value;
+            var items = document.querySelectorAll(".item");
+            console.log(items); //NodeList
+            // items = document.getElementsByClassName('.item');
+            // console.log(items);//HTMLCollection
+
+            // //중복체크
+            // for (var i = 0; i < items.length; i++) {
+            //     console.log(items[i].textContent);
+            //     if (items[i].textContent == val) {
+            //         alert('중복값입니다.');
+            //         e.target.value = "";
+            //         return; // 함수 실행 중단
+            //     }
+            // }
+
+            //배열을 이용한 중복체크
+            var itemAry = [];
+            for (var i = 0; i < items.length; i++) {
+                itemAry.push(items[i].textContent);
+            }
+
+            if (itemAry.indexOf(val) != -1) {
+                alert('존재하는 값입니다.');
+                e.target.value = "";
+                return;
+            }
+
+            //추가
+            var div = document.createElement('div');
+            div.setAttribute('class', 'item')
+            div.textContent = val;
+            show.appendChild(div);
+            e.target.value = "";
+
+        }
+        setTimeout(() => { //정한 시간이 지나면 실행
+            // window.location.href = "https://www.daum.net";  //href 는 이쪽으로 이동하겠다는 object //href 는 이쪽으로 이동하겠다는 object
+            // window.location['href'] = "https://www.daum.net"; 
+        }, 3000);
+    </script>
+</head>
+
+<body>
+    <div id="show"></div>
+    입력(onchange,add) : <input type="text" onchange="addItem(event)">
+    <br>입력(onchange,remove) : <input type="text" onchange="removeItem(event)">
+    <P id="timer">0</P>
+    <br>입력(onkeyup) : <input type="text" onkeyup="removeItem2()">
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>math.html</title>
+</head>
+
+<body>
+    <script>
+        var num = 12.3;
+        console.log(parseInt(num));
+        num = '12.5';
+        console.log(parseFloat(num));
+        var result = Math.round(num)
+        console.log(result);
+
+        num = '-12.6';
+        console.log(parseFloat(num));
+        var result = Math.round(num)
+        console.log(result);
+
+        var result = Math.trunc(num)
+        console.log(result);
+
+        var result = Math.floor(num)
+        console.log(result);
+
+        var result = Math.ceil(num)
+        console.log(result);
+
+        var result = Math.sign(num) //양수 음수 확인
+        console.log(result);
+
+        if (Math.sign(num) == 1) console.log("양수");
+        else if (Math.sign(num) == -1) console.log("음수");
+
+        var result = Math.abs(num) //절대값
+        console.log(result);
+
+        console.log(Math.max(1, -4));
+
+        console.log(Math.min(1, -4));
+
+        console.log(Math.sqrt(2));
+
+        // num = '12.612313';
+        // var result = num.toFixed(2);
+        // console.log(result);
+
+        /*
+        toFixed()
+        parseInt()
+        NUMBER()
+        */
+
+        Math.random(); // 0 ~ 1 임의의 수.
+        // 1 ~ 6 까지의 임의 수.
+        Math.random() * 6; //0~6
+        Math.floor(Math.random() * 6); //0~5
+
+        console.clear();
+
+        var uniqNum = [];
+        var lnth = uniqNum.length;
+
+/*
+        while (lnth < 3) {
+            result = Math.floor(Math.random() * 6) + 1; //1~6
+            if (uniqNum.indexOf(result) == -1) {
+                uniqNum.push(result);
+            }
+            lnth = uniqNum.length;
+        }
+        console.log(uniqNum);
+
+        while (lnth < 10) {
+            result = Math.floor(Math.random() * 20) + 1;
+            if (uniqNum.indexOf(result) == -1) {
+                uniqNum.push(result);
+            }
+            lnth = uniqNum.length;
+        }
+        // uniqNum.sort();//순서 정리
+        // uniqNum.sort(function (a, b) { // a > b => +, a < b => -
+        //     if (a > b){
+        //         return 1; //임의의 양의값
+        //     } else {
+        //         return -1; //임의의 음의값
+        //     }
+
+        // });
+        uniqNum.sort(function (a, b) { // a > b => +, a < b => -
+            return a-b; //a>b +, a<b -
+        });
+        uniqNum.reverse(); //역순으로 정리
+        console.log(uniqNum);
+
+        var numbers = new Set();
+        while (numbers.size < 3) {
+            numbers.add(Math.floor(Math.random() * 6) + 1);
+        }
+
+        // numbers.add(2);
+        // numbers.add(3);
+        // numbers.add(1);
+        // numbers.add(1);
+        // numbers.add(1);
+        // numbers.add(1);
+
+        // result = numbers.values();
+        // // numbers.delete(3);
+        // console.log(result);
+        // for (var r of result) {
+        //     console.log(r);
+        // }
+
+/*        
+        numbers.forEach(item => {
+            console.log(item);
+        });
+*/
+        // for (var i = 1; i <= 3; i++) {
+        //     result = Math.floor(Math.random() * 6) + 1; //1~6
+        //     if(uniqNum.indexOf(result) != -1){
+        //         i--;
+        //         continue;
+        //     }
+        //     console.log(`임의의 수 ${result}`);
+        //     uniqNum.push(result);
+        // }
+
+
+
+
+
+
+
+
+        for (var i = 1; i <= 3; i++) {
+            result = Math.floor(Math.random() * 6) + 1; //1~6
+            console.log(`임의의 수 ${result}`);
+            // uniqNum.push(result);
+            var exist = false;
+            for (var e = 0; e < uniqNum.length; e++) {
+                if (uniqNum[e] == result) {
+                    exist = true;
+                    break;
+                }
+            }
+            if (!exist)
+                uniqNum.push(result);
+            else i--;
+
+        }
+
+        console.log(uniqNum[0]);
+        console.log(uniqNum);
+    </script>
+</body>
+
+</html>
