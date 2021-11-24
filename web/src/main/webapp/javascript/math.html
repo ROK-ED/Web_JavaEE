@@ -66,15 +66,15 @@
         var uniqNum = [];
         var lnth = uniqNum.length;
 
-/*
-        while (lnth < 3) {
-            result = Math.floor(Math.random() * 6) + 1; //1~6
-            if (uniqNum.indexOf(result) == -1) {
-                uniqNum.push(result);
-            }
-            lnth = uniqNum.length;
-        }
-        console.log(uniqNum);
+
+        // while (lnth < 3) {
+        //     result = Math.floor(Math.random() * 6) + 1; //1~6
+        //     if (uniqNum.indexOf(result) == -1) {
+        //         uniqNum.push(result);
+        //     }
+        //     lnth = uniqNum.length;
+        // }
+        // console.log(uniqNum);
 
         while (lnth < 10) {
             result = Math.floor(Math.random() * 20) + 1;
@@ -117,11 +117,11 @@
         //     console.log(r);
         // }
 
-/*        
+       
         numbers.forEach(item => {
             console.log(item);
         });
-*/
+
         // for (var i = 1; i <= 3; i++) {
         //     result = Math.floor(Math.random() * 6) + 1; //1~6
         //     if(uniqNum.indexOf(result) != -1){
@@ -133,31 +133,27 @@
         // }
 
 
-
-
-
-
-
-
+        var uniqNum2 = [];
         for (var i = 1; i <= 3; i++) {
             result = Math.floor(Math.random() * 6) + 1; //1~6
             console.log(`임의의 수 ${result}`);
             // uniqNum.push(result);
             var exist = false;
-            for (var e = 0; e < uniqNum.length; e++) {
-                if (uniqNum[e] == result) {
+            for (var e = 0; e < uniqNum2.length; e++) {
+                if (uniqNum2[e] == result) {
                     exist = true;
                     break;
                 }
             }
             if (!exist)
-                uniqNum.push(result);
+            uniqNum2.push(result);
             else i--;
 
         }
 
-        console.log(uniqNum[0]);
-        console.log(uniqNum);
+
+        console.log(uniqNum2[0]);
+        console.log(uniqNum2);
     </script>
 </body>
 
