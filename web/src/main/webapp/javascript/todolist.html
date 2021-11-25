@@ -58,6 +58,7 @@
                 <li>Complete
                     <div class="buttons">
                         <button class="remove" onclick="removeFnc(event)">Delete</button>
+                        <!-- <button class="complete" onclick="completeFnc(event)">Complete</button> -->
                         <button class="complete" onclick="completeFnc(event)">Complete</button>
                     </div>
                 </li>
@@ -68,7 +69,8 @@
                 <li>Completed!!
                     <div class="buttons">
                         <button class="remove" onclick="removeFnc(event)">Delete</button>
-                        <button class="complete" onclick="toDoFnc(event)">ToDo</button>
+                        <!-- <button class="complete" onclick="toDoFnc(event)">ToDo</button> -->
+                        <button class="complete" onclick="completeFnc(event)">ToDo</button>
                     </div>
                 </li>
             </ul>
@@ -105,7 +107,7 @@
             }
         }
 
-       
+
 
         // document.getElementById('new').addEventListener('click', function () {
         //     var userInputValue = document.getElementById('text').value;
@@ -159,25 +161,43 @@
 
 
 
+        //완료처리
+        // function completeFnc(e) {
+        //     var targetList = e.target.parentNode.parentNode;
+        //     console.log(window)
+        //     // targetList.children[0].children[1].textContent = "ToDo";
+        //     // document.getElementById('complete').appendChild(targetList);
 
+        // }
+        // function toDoFnc(e) {
+        //     var targetList = e.target.parentNode.parentNode;
+        //     targetList.children[0].children[1].textContent = "Complete";
+        //     document.getElementById('todo').appendChild(targetList);
+        // }
 
         function completeFnc(e) {
+
             var targetList = e.target.parentNode.parentNode;
-            console.log(window)
-            // targetList.children[0].children[1].textContent = "ToDo";
-            // document.getElementById('complete').appendChild(targetList);
+            if(e.target.textContent == 'Complete') { //추가이면...
+                targetList.children[0].children[1].textContent = "ToDo";
+                document.getElementById('complete').appendChild(targetList);
+            } else { //삭제이면..
+                targetList.children[0].children[1].textContent = "Complete";
+                document.getElementById('todo').appendChild(targetList);
+            }
 
         }
 
-        function toDoFnc(e) {
-            var targetList = e.target.parentNode.parentNode;
-            targetList.children[0].children[1].textContent = "Complete";
-            document.getElementById('todo').appendChild(targetList);
-        }
 
+
+
+
+        //삭제처리
         function removeFnc(e) {
-            var targetList = e.target.parentNode.parentNode;
-            targetList.remove(targetList.parentNode.parentNode);
+            var targetList = e.target.parentNode.parentNode; //여기서 remove()호출가능
+            // targetList.remove(targetList.parentNode.parentNode);
+            var parent = targetList.parentNode;
+            parent.removeChild(targetList); //하위요소 remove();
         }
     </script>
 </body>
