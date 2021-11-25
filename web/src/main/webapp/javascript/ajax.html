@@ -235,6 +235,7 @@
                     });
 
                     function findSido(e) {
+
                         var labl = e.target.textContent;
                         console.log(labl);
 
@@ -253,13 +254,17 @@
                         console.log(filterAry[0]);
 
                         
-
+                        
                         
                         var tbl = document.createElement('table');
                         tbl.setAttribute('border', '1');
                         var tbody = document.createElement('tbody');
                         tbody.setAttribute('id', 'tbd');
-                        // document.getElementById('tbd').remove();
+                        tbl.appendChild(tbody);
+                        parent.appendChild(tbl);
+                        document.getElementById('tbd').remove();
+                        
+                        
                         for (var obj of filterAry) {
                             var tr = document.createElement('tr');
                             for (var field in obj) {

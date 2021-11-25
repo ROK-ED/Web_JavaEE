@@ -75,6 +75,7 @@
         <div>0</div>
         <div id="cl">C</div>
         <div id="di">/</div>
+        <div id="do">.</div>
     </div>
     <div id='display2'>&nbsp;</div>
 
@@ -88,6 +89,9 @@
             btn.addEventListener('click', function () {
                 var display = document.getElementById('display');
                 var display2 = document.getElementById('display2');
+
+                
+
 
                 if (this.textContent == '=') {
                     last = display.textContent
@@ -131,7 +135,15 @@
 
                 } else {
                     if (display.textContent == '0') {
-                        display.textContent = '';
+                        /*if(this.textContent == '0'){
+                            display.textContent = '';
+                        }else*/ 
+                        if(this.textContent == '.')  {
+                            display.textContent = '0';
+                        }else {
+                            display.textContent = '';
+                        }
+                        
                     }
                     display.textContent += this.textContent;
                     display2.textContent += this.textContent;

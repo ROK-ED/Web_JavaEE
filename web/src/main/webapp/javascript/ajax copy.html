@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax.html</title>
+</head>
+
+<body>
+    <h3>시도 리스트</h3>
+    <div id="sido">
+    </div>
+    <div id="list">
+    </div>
+    <script>
+        var url =
+            `https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=XML&serviceKey=Kjy9tdnusc4EdzILsGKCO8%2Ffb8ESSOFfEW5LQjyOO3WCnfk4jovouPiqjdMfy8qMRNavKgRpyS6R2hUYaEPxaQ%3D%3D`;
+
+        var fields = ['id', 'sido', 'facilityName', 'sigungu', 'centerName', 'address', 'phoneNumber'];
+        var centerAry = [];
+        var xhtp = new XMLHttpRequest(); // 서버에 있는 파일을 읽어들임.
+        xhtp.onreadystatechange = function () {
+            if (xhtp.readyState == 4) {
+                if (xhtp.status == 200) {
+                    // 공공데이터 가져오기. centerAry 배열에 담아서 컨트롤 하기.
+                    var data = xhtp.responseXML;
+                    var records = data.getElementsByTagName('item');
+                    for (var i = 0; i < records.length; i++) {
+                        var center = {};
+                        for (var field of fields) {
+                            center[field] = records[i].querySelector('[name="' + field + '"]').textContent;
+                        }
+                        centerAry.push(center);
+                    }
+
+                    // 시도 버튼 만들기.
+                    var sidoAry = new Set(); // 중복제거.
+                    centerAry.forEach(item => {
+                        sidoAry.add(item.sido);
+                    });
+                    var sidoDiv = document.getElementById('sido');
+                    sidoAry.forEach(item => {
+                        var butn = document.createElement('button');
+                        butn.addEventListener('click', findSido);
+                        butn.textContent = item;
+                        sidoDiv.appendChild(butn);
+                    });
+
+                    // 시도별 조회하고 화면에 표 형식으로 보여주기.
+                    function findSido(e) {
+                        var list = document.getElementById('list');
+                        var labl = e.target.textContent;
+                        var filterAry = centerAry.filter((item) => {
+                            return item.sido == labl;
+                        });
+                        // 함수호출로 처리하기.
+                        list.appendChild(getSidoTable(filterAry));
+                    }
+
+                    // 도시별 접종센터 테이블 만들기.
+                    function getSidoTable(ary) {
+                        var existTable = document.getElementById('tbl');
+                        if (existTable) {
+                            existTable.remove();
+                        }
+                        var table = document.createElement('table');
+                        table.setAttribute('id', 'tbl');
+                        table.setAttribute('border', '1')
+                        var tbody = document.createElement('tbody');
+                        table.appendChild(tbody);
+                        ary.forEach(item => {
+                            tbody.appendChild(makeTr(item));
+                        })
+                        return table;
+                    }
+
+                    // 데이터 한건당 tr만들기.
+                    function makeTr(obj) {
+                        var tr = document.createElement('tr');
+                        for (var field in obj) {
+                            var td = document.createElement('td');
+                            td.textContent = obj[field];
+                            tr.appendChild(td);
+                        }
+                        return tr;
+                    }
+
+                }
+            }
+        }
+        xhtp.open('get', url);
+        xhtp.send();
+    </script>
+</body>
+
+</html>
