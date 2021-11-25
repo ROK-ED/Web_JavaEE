@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax.html</title>
+
+</head>
+
+<body>
+    <h3>시도 리스트</h3>
+    <div id="sido">
+
+    </div>
+
+    <h3>친구 리스트</h3>
+    <div id="list">
+
+    </div>
+
+    <script>
+        //Asynchronous Javascript And Xml
+
+
+        // setTimeout(() => { //동기방식 실행이 완료되고 다음작업으로 넘어감
+        //     console.log('1');
+        //     setTimeout(() => {
+        //         console.log('4');
+        //         setTimeout(() => {
+        //             console.log('2'); //network 파일.. 1초.
+        //         }, 1000);
+        //     }, 2000);
+        // }, 2000);
+        // setTimeout(() => { //비동기방식 실행이 완료되기전에 다음작업으로 넘어감
+        //     console.log('3');
+        // }, 2000);
+
+
+
+
+
+        //XML, json => 서버 <-> 클라이언트 데이터 주고 받는 포맷.
+        //홍길동35hong@email.com홍길동35hong@email.com홍길동35hong@email.com홍길동35hong@email.com
+        //<name>홍길동</name><age>35</age><email>hong@email.com</email><name>홍길동</name><age>35</age><email>hong@email.com</email>
+        //<record><name>홍길동</name><age>35</age><email>hong@email.com</email></record>
+        /*
+                console.log('1');
+
+                var xhtp = new XMLHttpRequest(); //서버에 있는 파일을 읽어들임
+                xhtp.onreadystatechange = function () {
+                    // console.log(xhtp.responseText, xhtp.readyState, xhtp.status);
+                    if (xhtp.readyState == 4) {
+                        if (xhtp.status == 200) {
+                            console.log('2');
+                            // console.log(xhtp.responseText);
+                            var data = JSON.parse(xhtp.responseText);
+                            console.log(data);
+
+                            data.forEach((item, ind, ary) => {
+                                var p = document.createElement('p');
+                                // p.innerHTML = xhtp.responseText;
+                                p.innerHTML = item.first_name + ', ' + item.last_name;
+
+                                document.body.appendChild(p);
+                            });
+
+                        }
+                    }
+                }
+                // xhtp.open('get', 'data.text');
+                xhtp.open('get', 'MOCK_DATA.json');
+                xhtp.send();
+                console.log('3');
+        */
+        /*
+        readyState
+        0: request not initialized
+        1: server connection established
+        2: request received
+        3: processing request
+        4: request finished and response is ready
+        
+        status
+        200: "OK"
+        403: "Forbidden"
+        404: "Page not found"
+        */
+
+
+
+        // console.log('1');
+
+        // var xhtp = new XMLHttpRequest(); //서버에 있는 파일을 읽어들임
+        // xhtp.onreadystatechange = function () {
+        //     if (xhtp.readyState == 4) {
+        //         if (xhtp.status == 200) {
+        //             console.log('2');
+        //             var data = xhtp.responseText;
+        //             console.log(data);
+
+        //         }
+        //     }
+        // }
+        // xhtp.open('get', 'data.html');
+        // xhtp.send();
+        // console.log('3');
+
+
+        // console.log('1');
+
+        // var xhtp = new XMLHttpRequest(); //서버에 있는 파일을 읽어들임
+        // xhtp.onreadystatechange = function () {
+        // if (xhtp.readyState == 4) {
+        // if (xhtp.status == 200) {
+        // console.log('2');
+        // var data = xhtp.responseXML;
+        // // console.log(data);
+        // console.log(data.getElementsByTagName('record')[0].children[1].textContent);
+
+        // }
+        // }
+        // }
+        // xhtp.open('get', 'dataset.xml');
+        // xhtp.send();
+        // console.log('3');
+
+        console.log('1');
+        var xhtp2 = new XMLHttpRequest(); //서버에 있는 파일을 읽어들임
+        xhtp2.onreadystatechange = function () {
+            if (xhtp2.readyState == 4) {
+                if (xhtp2.status == 200) {
+                    console.log('2');
+                    var parent = document.getElementById('list'); //불러들일 위치 지정
+                    var data = xhtp2.responseXML;
+                    // console.log(data);
+                    console.log(data.getElementsByTagName('record')[1].children[3].textContent);
+                    console.log(data.getElementsByTagName('record')[0].children.length);
+
+                    var tbl = document.createElement('table');
+                    tbl.setAttribute('border', '1');
+                    var tbody = document.createElement('tbody');
+                    for (var i = 0; i < data.getElementsByTagName('record').length; i++) {
+                        var tr = document.createElement('tr');
+                        for (var e = 0; e < data.getElementsByTagName('record')[i].children.length; e++) {
+                            var td = document.createElement('td');
+                            td.textContent = data.getElementsByTagName('record')[i].children[e].textContent;
+                            tr.appendChild(td);
+                        }
+                        tbody.appendChild(tr);
+                    }
+                    tbl.appendChild(tbody);
+                    parent.appendChild(tbl);
+                }
+            }
+
+        }
+        xhtp2.open('get', 'mydata.xml');
+        xhtp2.send();
+        console.log('3');
+
+
+
+
+
+        // var xhtp = new XMLHttpRequest(); //서버에 있는 파일을 읽어들임
+        // xhtp.onreadystatechange = function () {
+        //     // console.log(xhtp.responseText, xhtp.readyState, xhtp.status);
+        //     if (xhtp.readyState == 4) {
+        //         if (xhtp.status == 200) {
+        //             console.log('2');
+        //             // console.log(xhtp.responseText);
+        //             var data = JSON.parse(xhtp.responseText);
+        //             console.log(data);
+
+        //             data.forEach((item, ind, ary) => {
+        //                 var p = document.createElement('p');
+        //                 // p.innerHTML = xhtp.responseText;
+        //                 p.innerHTML = item.first_name + ', ' + item.last_name;
+
+        //                 document.body.appendChild(p);
+        //             });
+
+        //         }
+        //     }
+        // }
+        // // xhtp.open('get', 'data.text');
+        // xhtp.open('get', 'MOCK_DATA.json');
+        // xhtp.send();
+        // console.log('3');
+
+
+
+
+
+        var url =
+            `https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=283&returnType=XML&serviceKey=OtI%2BW5KNwnx2jUTLITSdjbH9TPyHtaH2W6MXItxZp%2Bozns04eYfdcj7xZkKv5udrDYJQvuHgssLSaTQ3CYB%2BLQ%3D%3D`;
+
+        var fields = ['id', 'facilityName', 'sigungu', 'sido', 'centerName', 'address', 'phoneNumber'];
+        var centerAry = [];
+        var xhtp = new XMLHttpRequest(); //서버에 있는 파일을 읽어들임
+        xhtp.onreadystatechange = function () {
+            if (xhtp.readyState == 4) {
+                if (xhtp.status == 200) {
+                    var data = xhtp.responseXML;
+                    console.log(data);
+                    var records = data.getElementsByTagName('item');
+                    // console.log(records[0].children[11].textContent);
+                    for (var i = 0; i < records.length; i++) {
+                        var center = {};
+                        for (var field of fields) {
+                            // console.log(field, records[i].querySelector('[name="'+ field +'"]').textContent);
+                            center[field] = records[i].querySelector('[name="' + field + '"]').textContent;
+                        }
+                        // console.log('==========================')
+                        centerAry.push(center);
+                    }
+                    // console.log(centerAry);
+
+                    //버튼만들기
+                    var sidoAry = new Set(); //중복제거.
+                    centerAry.forEach(item => {
+                        sidoAry.add(item.sido);
+                    });
+                    console.log(sidoAry);
+
+                    var sidoDiv = document.getElementById('sido');
+                    sidoAry.forEach(item => {
+                        var butn = document.createElement("button");
+                        butn.addEventListener('click', findSido);
+                        butn.textContent = item;
+                        sidoDiv.appendChild(butn);
+
+                    });
+
+                    function findSido(e) {
+                        var labl = e.target.textContent;
+                        console.log(labl);
+
+                        var filterAry = centerAry.filter((item) => {
+                            return item.sido == labl;
+                        })
+                        console.log(filterAry);
+
+
+
+
+
+                        var parent = document.getElementById('sido'); //불러들일 위치 지정
+                        var data = xhtp.responseXML;
+                        // console.log(data);
+                        console.log(filterAry[0]);
+
+                        
+
+                        
+                        var tbl = document.createElement('table');
+                        tbl.setAttribute('border', '1');
+                        var tbody = document.createElement('tbody');
+                        tbody.setAttribute('id', 'tbd');
+                        // document.getElementById('tbd').remove();
+                        for (var obj of filterAry) {
+                            var tr = document.createElement('tr');
+                            for (var field in obj) {
+                                var td = document.createElement('td');
+                                td.textContent = obj[field];
+                                tr.appendChild(td);
+                            }
+                            tbody.appendChild(tr);
+                        }
+
+                        tbl.appendChild(tbody);
+                        parent.appendChild(tbl);
+
+                        console.log(labl);
+                        console.log(document.getElementById('sido'));
+
+                        // if (labl == ) {
+
+
+                            // var tbl = document.createElement('table');
+                            // tbl.setAttribute('border', '1');
+                            // var tbody = document.createElement('tbody');
+                            // tbody.setAttribute('id','tbd');
+                            // for (var obj of filterAry) {
+                            //     var tr = document.createElement('tr');
+                            //     for (var field in obj) {
+                            //         var td = document.createElement('td');
+                            //         td.textContent = obj[field];
+                            //         tr.appendChild(td);
+                            //     }
+                            //     tbody.appendChild(tr);
+                            // }
+
+                            // tbl.appendChild(tbody);
+                            // parent.appendChild(tbl);
+                        // } else if (item.sido != labl) {
+                        // document.getElementById('tbd').remove();
+                        // }
+
+
+                    }
+
+
+
+
+                }
+            }
+        }
+        xhtp.open('get', url);
+        xhtp.send();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist.html</title>
+    <style>
+        #todo {
+            background-color: rgb(226, 223, 192);
+        }
+
+        #complete {
+            background-color: rgb(147, 175, 218);
+        }
+
+        #todo li {
+            height: 30px;
+            padding-bottom: 2px;
+            margin-bottom: 8px;
+            background-color: rgb(230, 212, 56);
+        }
+
+        #complete li {
+            height: 30px;
+            padding-bottom: 2px;
+            margin-bottom: 8px;
+            background-color: rgb(71, 122, 197);
+        }
+
+        .buttons {
+            float: right;
+            width: 210px;
+            height: 40px;
+        }
+
+        .buttons button {
+            cursor: pointer;
+            height: 30px;
+            width: 100px;
+            margin-right: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>To Do list</h1>
+            <input type="text" name="text" id="text" onchange=''>
+            <button id="new">+</button>
+        </header>
+
+        <div id="wrapper">
+            <h3>To Do</h3>
+            <ul id="todo">
+                <li>Complete
+                    <div class="buttons">
+                        <button class='remove'>Delete</button>
+                        <button class='complete'>Complete</button>
+                    </div>
+                </li>
+            </ul>
+
+            <h3>Completed</h3>
+            <ul id="complete">
+                <li>Completed!!
+                    <div class="buttons">
+                        <button class='remove'>Delete</button>
+                        <button class='complete'>ToDo</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 등록이벤트 .
+        document.getElementById('text').addEventListener('keyup', function (e) {
+            if (e.keyCode == 13) {
+                addCallBackFnc();
+            }
+        });
+        // document.getElementById('text').addEventListener('change', addCallBackFnc);
+        document.getElementById('new').addEventListener('click', addCallBackFnc);
+
+        function addCallBackFnc() {
+            var userInputValue = document.getElementById('text').value;
+            if (userInputValue) {
+                addNewItem(userInputValue);
+                document.getElementById('text').value = '';
+            }
+        }
+
+        // to do 추가.
+        function addNewItem(item) {
+            var li = document.createElement('li');
+            var val = document.createTextNode(item + ' ');
+            li.appendChild(val);
+            var div = document.createElement('div');
+            div.setAttribute('class', 'buttons');
+            // div.innerHTML = '<button>Delete</button> <button>Complete</button>';
+            var delBtn = document.createElement('button');
+            delBtn.textContent = 'Delete';
+            delBtn.addEventListener('click', deleteFnc);
+            var comBtn = document.createElement('button');
+            comBtn.textContent = 'Complete';
+            comBtn.addEventListener('click', completeFnc);
+            div.append(delBtn, comBtn);
+            li.appendChild(div);
+
+            document.getElementById('todo').appendChild(li);
+        }
+
+        // 완료처리.
+        function completeFnc(e) {
+
+            var targetList = e.target.parentNode.parentNode;
+            if (e.target.textContent == 'Complete') { // 추가이면...
+                targetList.children[0].children[1].textContent = 'ToDo';
+                document.getElementById('complete').appendChild(targetList);
+
+            } else { // 삭제이면...
+                targetList.children[0].children[1].textContent = 'Complete';
+                document.getElementById('todo').appendChild(targetList);
+
+            }
+        }
+
+        // 삭제처리.
+        function deleteFnc(e) {
+            var targetList = e.target.parentNode.parentNode; // 요기서 remove() 호출가능.
+            var parent = targetList.parentNode;
+            parent.removeChild(targetList); // 하위요소 remove();
+        }
+    </script>
+</body>
+
+</html>

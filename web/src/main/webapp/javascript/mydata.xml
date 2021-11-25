@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<record><name>홍길동</name><phone>010-1234-1111</phone><address>대구 중구 100번지</address><birth>98-10-03</birth></record>
+<record><name>박민수</name><phone>010-2341-2222</phone><address>대구 중구 200번지</address><birth>10-09-10</birth></record>
+<record><name>김기억</name><phone>010-3456-3333</phone><address>대구 중구 300번지</address><birth>91-11-03</birth></record>
+<record><name>최수림</name><phone>010-4865-4444</phone><address>대구 중구 400번지</address><birth>95-01-22</birth></record>
+
+</dataset>

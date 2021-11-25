@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist.html</title>
+    <style>
+        #todo {
+            background-color: rgb(226, 223, 192);
+        }
+
+        #complete {
+            background-color: rgb(147, 175, 218);
+        }
+
+        #todo li {
+            height: 30px;
+            padding-bottom: 2px;
+            margin-bottom: 8px;
+            background-color: rgb(230, 212, 56);
+        }
+
+        #complete li {
+            height: 30px;
+            padding-bottom: 2px;
+            margin-bottom: 8px;
+            background-color: rgb(71, 122, 197);
+        }
+
+        .buttons {
+            float: right;
+            width: 210px;
+            height: 40px;
+        }
+
+        .buttons button {
+            cursor: pointer;
+            height: 30px;
+            width: 100px;
+            margin-right: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>To Do list</h1>
+            <input type="text" name="text" id="text" onchange="">
+            <button id="new">+</button>
+        </header>
+
+        <div id="wrapper">
+            <h3>To Do</h3>
+            <ul id="todo">
+                <li>Complete
+                    <div class="buttons">
+                        <button class="remove" onclick="removeFnc(event)">Delete</button>
+                        <button class="complete" onclick="completeFnc(event)">Complete</button>
+                    </div>
+                </li>
+            </ul>
+
+            <h3>Completed</h3>
+            <ul id="complete">
+                <li>Completed!!
+                    <div class="buttons">
+                        <button class="remove" onclick="removeFnc(event)">Delete</button>
+                        <button class="complete" onclick="toDoFnc(event)">ToDo</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        //등록이벤트.
+        // document.getElementById('text').addEventListener('change',addCallBackFnc);
+        document.getElementById('text').addEventListener('keyup', function (e) {
+            if (e.keyCode == 13) {
+                addCallBackFnc();
+            }
+        });
+
+        document.getElementById('new').addEventListener('click', addCallBackFnc);
+        // document.getElementById('new').addEventListener('click', function () {
+        //     var userInputValue = document.getElementById('text').value;
+        //     var li = document.createElement('li');
+        //     var val = document.createTextNode(userInputValue + " ");
+        // });
+        // document.getElementById('new').addEventListener('click', function () {
+        //     var userInputValue = document.getElementById('text').value;
+        //    if(userInputValue){
+        //        addNewItem(userInputValue);
+        //        document.getElementById('text').value = '';
+        //     }
+        // });
+        function addCallBackFnc() {
+            var userInputValue = document.getElementById('text').value;
+            if (userInputValue) {
+                addNewItem(userInputValue);
+                document.getElementById('text').value = '';
+            }
+        }
+
+       
+
+        // document.getElementById('new').addEventListener('click', function () {
+        //     var userInputValue = document.getElementById('text').value;
+        //     var li = document.createElement('li');
+        //     var val = document.createTextNode(userInputValue + " ");
+        //     li.appendChild(val);
+        //     var div = document.createElement('div');
+        //     div.setAttribute('class', 'buttons');
+
+        //     // div.innerHTML = "<button>Delete</button> <button>Complete</button>";
+        //     var btn = document.createElement('button');
+        //     btn.setAttribute('onclick',"removeFnc(event)");
+        //     val = document.createTextNode("Delete");
+        //     btn.appendChild(val);
+        //     div.appendChild(btn);
+        //     var btn = document.createElement('button');
+        //     btn.setAttribute('onclick',"completeFnc(event)");
+        //     val = document.createTextNode("Complete");
+        //     btn.appendChild(val);
+        //     div.appendChild(btn);
+
+        //     li.appendChild(div);
+        //     document.getElementById('todo').appendChild(li);
+        // });
+
+        //to do 추가
+        function addNewItem(item) {
+            var li = document.createElement('li');
+            var val = document.createTextNode(userInputValue + " ");
+            li.appendChild(val);
+            var div = document.createElement('div');
+            div.setAttribute('class', 'buttons');
+
+            var delBtn = document.createElement('button');
+            // val = document.createTextNode("Delete");
+            // delBtn.appendChild(val);
+            delBtn.textContent = 'Delete';
+            delBtn.setAttribute('onclick', removeFnc);
+
+            var comBtn = document.createElement('button');
+            // val = document.createTextNode("Complete");
+            // comBtn.appendChild(val);
+            comBtn.textContent = 'Complete';
+            comBtn.setAttribute('onclick', completeFnc);
+
+            div.append(delBtn, comBtn);
+            li.appendChild(div);
+
+            document.getElementById('todo').appendChild(li);
+        };
+
+
+
+
+
+        function completeFnc(e) {
+            var targetList = e.target.parentNode.parentNode;
+            console.log(window)
+            // targetList.children[0].children[1].textContent = "ToDo";
+            // document.getElementById('complete').appendChild(targetList);
+
+        }
+
+        function toDoFnc(e) {
+            var targetList = e.target.parentNode.parentNode;
+            targetList.children[0].children[1].textContent = "Complete";
+            document.getElementById('todo').appendChild(targetList);
+        }
+
+        function removeFnc(e) {
+            var targetList = e.target.parentNode.parentNode;
+            targetList.remove(targetList.parentNode.parentNode);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: DodgerBlue;
+            width: 482px;
+        }
+
+        .flex-container>div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+            border-radius: 5px;
+        }
+
+        .flex-container>div:hover {
+            background-color: greenyellow;
+            color: blue;
+            cursor: pointer;
+        }
+
+        #display {
+            width: 100%;
+            text-align: right;
+            padding-right: 15px;
+            border-radius: 5px;
+            background-color: lightgreen;
+        }
+
+        #display2 {
+            
+            width: 67.4%;
+            text-align: right;
+            padding-right: 15px;
+            padding-top: 45px;
+            border-radius: 5px;
+            margin-top: 5px;
+            background-color: rgb(196, 144, 238);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="flex-container">
+        <div id='display'>0</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div id="pl">+</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div id="mi">-</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div id="ml">*</div>
+        <div id="eq">=</div>
+        <div>0</div>
+        <div id="cl">C</div>
+        <div id="di">/</div>
+    </div>
+    <div id='display2'>&nbsp;</div>
+
+    <script>
+        var btns = document.querySelectorAll(".flex-container>div");
+        var first = 0,
+            last = 0,
+            oper = '+';
+
+        for (var btn of btns) {
+            btn.addEventListener('click', function () {
+                var display = document.getElementById('display');
+                var display2 = document.getElementById('display2');
+
+                if (this.textContent == '=') {
+                    last = display.textContent
+                    var result = cal(first, last, oper);
+                    console.log(result);
+                    display.textContent = result;
+                    display2.textContent += ' = ' + result;
+
+                } else if (this.textContent == 'C') {
+
+                    display.textContent = '0';
+                    display2.innerHTML += "<br><br>";
+
+                } else if (this.textContent == '+') {
+                    first = display.textContent
+                    oper = '+';
+                    // display.textContent = '';
+                    display.innerHTML = "&nbsp;";
+                    display2.textContent += ' + '
+
+                } else if (this.textContent == '-') {
+                    first = display.textContent
+                    oper = '-';
+                    // display.textContent = '';
+                    display.innerHTML = "&nbsp;";
+                    display2.textContent += ' - '
+
+                } else if (this.textContent == '*') {
+                    first = display.textContent
+                    oper = '*';
+                    // display.textContent = '';
+                    display.innerHTML = "&nbsp;";
+                    display2.textContent += ' * '
+
+                } else if (this.textContent == '/') {
+                    first = display.textContent
+                    oper = '/';
+                    // display.textContent = '';
+                    display.innerHTML = "&nbsp;";
+                    display2.textContent += ' / '
+
+                } else {
+                    if (display.textContent == '0') {
+                        display.textContent = '';
+                    }
+                    display.textContent += this.textContent;
+                    display2.textContent += this.textContent;
+
+                }
+            });
+        }
+
+        function cal(num1, num2, oper) {
+            //연산해주는 함수
+            if (oper == '+') {
+                return parseInt(num1) + parseInt(num2);
+            } else if (oper == '-') {
+                return parseInt(num1) - parseInt(num2);
+            } else if (oper == '*') {
+                return parseInt(num1) * parseInt(num2);
+            } else if (oper == '/') {
+                return parseInt(num1) / parseInt(num2);
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
