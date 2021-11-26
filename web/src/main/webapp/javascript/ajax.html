@@ -234,6 +234,7 @@
 
                     });
 
+                    // 시도별 조회하고 화면에 표 형식으로 보여주기.
                     function findSido(e) {
 
                         var labl = e.target.textContent;
@@ -262,7 +263,11 @@
                         tbody.setAttribute('id', 'tbd');
                         tbl.appendChild(tbody);
                         parent.appendChild(tbl);
-                        document.getElementById('tbd').remove();
+                        document.getElementById('tbd').parentNode.remove();
+                         var tbody = document.createElement('tbody');
+                        tbody.setAttribute('id', 'tbd');
+                        tbl.appendChild(tbody);
+                        parent.appendChild(tbl);
                         
                         
                         for (var obj of filterAry) {
@@ -272,10 +277,11 @@
                                 td.textContent = obj[field];
                                 tr.appendChild(td);
                             }
-                            tbody.appendChild(tr);
+                            document.getElementById('tbd').appendChild(tr);
                         }
 
                         tbl.appendChild(tbody);
+                        
                         parent.appendChild(tbl);
 
                         console.log(labl);
@@ -316,6 +322,7 @@
         xhtp.open('get', url);
         xhtp.send();
     </script>
+   
 </body>
 
 </html>
