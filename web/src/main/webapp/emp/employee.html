@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="./createTable2.js"></script>
+</head>
+<body>
+	<h3>사원리스트</h3>
+	<div id="show"></div>
+	<script>
+		//Inversion of Control : tomcat
+		var ajax = new XMLHttpRequest();
+		ajax.open('post', '../GetJsonServlet');
+		ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		ajax.send("fname=Hong&lname=kildong&empId=300");
+		ajax.onload = function () {
+			console.log(JSON.parse(ajax.responseText));
+		}
+	
+		var xhtp = new XMLHttpRequest();
+		xhtp.open('get', '../GetJsonServlet');
+		xhtp.send();
+		xhtp.onload = function() {
+			var data = JSON.parse(xhtp.responseText);
+			console.log(data);
+			//필요한 컬럼필드
+			var fields = ['empId','fname','lname'];
+			var table = createTable(fields,data);
+			document.getElementById('show').appendChild(table);
+		}
+	</script>
+</body>
+</html>
