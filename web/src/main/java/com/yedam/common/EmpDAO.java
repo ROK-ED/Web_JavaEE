@@ -11,7 +11,7 @@ import com.yedam.emp.EmployeeVO;
 import emp.DAO;
 
 class Employee {
-	private int emplyeeId;
+	private int employeeId;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -20,10 +20,10 @@ class Employee {
 	private String jobId;
 	private int salary;
 
-	public Employee(int emplyeeId, String firstName, String lastName, String email, String phoneNumber, String hireDate,
+	public Employee(int employeeId, String firstName, String lastName, String email, String phoneNumber, String hireDate,
 			String jobId, int salary) {
 		super();
-		this.emplyeeId = emplyeeId;
+		this.employeeId = employeeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -33,12 +33,12 @@ class Employee {
 		this.salary = salary;
 	}
 
-	public int getEmplyeeId() {
-		return emplyeeId;
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmplyeeId(int emplyeeId) {
-		this.emplyeeId = emplyeeId;
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public String getFirstName() {
@@ -99,7 +99,7 @@ class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [emplyeeId=" + emplyeeId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
+		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", phoneNumber=" + phoneNumber + ", hireDate=" + hireDate + ", jobId=" + jobId + ", salary="
 				+ salary + "]";
 	}
@@ -139,7 +139,7 @@ public class EmpDAO extends DAO {
 
 	// 삭제기능(사원번호)
 	public boolean deleteEmployee(String empId) {
-		String sql = "delete from empl_demo where employee_id = ?";
+		String sql = "delete from emp_demo where employee_id = ?";
 		connect();
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -160,7 +160,7 @@ public class EmpDAO extends DAO {
 
 	// 수정기능(사원번호).
 	public EmployeeVO updateEmployee(EmployeeVO vo) {
-		String sql = "update empl_demo\r\n"//
+		String sql = "update emp_demo\r\n"//
 				+ "set    first_name = ?,\r\n"//
 				+ "       last_name = ?,\r\n"//
 				+ "       email = ?,\r\n"//

@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.yedam.emp.EmployeeVO;
 
 /**
@@ -32,29 +39,48 @@ public class GetJsonServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		EmpDAO dao = new EmpDAO();
 		List<Employee> list = dao.getEmployees();
-		int size = list.size();
-		int cnt = 0;
-		StringBuffer sb = new StringBuffer();
-		sb.append("[");
-		while (true) {
-			sb.append("{\"empId\":" + list.get(cnt).getEmplyeeId() + ",\"fname\":\"" + list.get(cnt).getFirstName()
-					+ "\",\"lname\":\"" + list.get(cnt).getLastName() + "\",\"email\":\"" + list.get(cnt).getEmail()
-					+ "\",\"hdate\":\"" + list.get(cnt).getHireDate() + "\",\"salary\":\"" + list.get(cnt).getSalary()
-					+ "\"}");
-			cnt++;
-			if (cnt == size) {
-				break;
-			} else {
-				sb.append(",\n");
-			}
+//		int size = list.size();
+//		int cnt = 0;
+//		StringBuffer sb = new StringBuffer();
+//		sb.append("[");
+//		while (true) {
+//			sb.append("{\"empId\":" + list.get(cnt).getEmployeeId() + ",\"fname\":\"" + list.get(cnt).getFirstName()
+//					+ "\",\"lname\":\"" + list.get(cnt).getLastName() + "\",\"email\":\"" + list.get(cnt).getEmail()
+//					+ "\",\"hdate\":\"" + list.get(cnt).getHireDate() + "\",\"salary\":\"" + list.get(cnt).getSalary()
+//					+ "\"}");
+//			cnt++;
+//			if (cnt == size) {
+//				break;
+//			} else {
+//				sb.append(",\n");
+//			}
+//		}
+//		sb.append("]");
+//		System.out.println(sb.toString()); // 콘솔창 출력
+//		response.getWriter().println(sb.toString()); // 웹 페이지 출력
+		
+		JSONObject obj = new JSONObject();
+		JSONArray ary = new JSONArray();
+		for(Employee emp : list) {
+			JSONObject innerObj = new JSONObject();
+			innerObj.put("employeeId", emp.getEmployeeId());
+			innerObj.put("firstName", emp.getFirstName());
+			
+			ary.add(innerObj);
 		}
-		sb.append("]");
-		System.out.println(sb.toString()); // 콘솔창 출력
+		obj.put("retCode", "Success");
+		obj.put("retVal", ary);
+		
+		Gson gson = new GsonBuilder().create();//.setPrettyPrinting() 값을 보게좋게 정리해줌
+		
+	
+//		object.add("val", );
 
-		response.getWriter().println(sb.toString()); // 웹 페이지 출력
+		System.out.println(gson.toJson(list).toString()); // 콘솔창 출력
+//		response.getWriter().println(obj.toString()); // 웹 페이지 출력
+		response.getWriter().println(gson.toJson(list).toString()); // 웹 페이지 출력
 	}
 
 	/**
@@ -114,9 +140,26 @@ public class GetJsonServlet extends HttpServlet {
 		if (cmd.equals("insert")) {
 
 			if (dao.insertEmp(vo)) {
-				response.getWriter().println("{\"retCode\":\"Success\"}");
+				JSONObject innerObj = new JSONObject();
+				innerObj.put("employeeId", vo.getEmployeeId());
+				innerObj.put("firstName", vo.getFirstName());
+				innerObj.put("lastName", vo.getLastName());
+				innerObj.put("email", vo.getEmail());
+				innerObj.put("hireDate", vo.getHireDate());
+				innerObj.put("salary", vo.getSalary());
+				
+				JSONObject obj = new JSONObject();
+				obj.put("retCode", "Success");
+				obj.put("retVal", innerObj);
+				
+//				response.getWriter().println("{\"retCode\":\"Success\"}");
+				response.getWriter().println(obj);
 			} else {
-				response.getWriter().println("{\"retCode\":\"Fail\"}");
+				JSONObject err = new JSONObject();
+				err.put("retCode", "Fail");
+				err.put("retVal", "처리중 에러발생");
+//				response.getWriter().println("{\"retCode\":\"Fail\"}");
+				response.getWriter().println(err);
 			}
 			// {"retCode":"
 //		response.getWriter().println("");
