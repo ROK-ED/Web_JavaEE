@@ -12,7 +12,7 @@ xhtp.onload = function() {
 	document.getElementById('show').appendChild(table);
 
 	var headTr = document.querySelector('#show>table>thead>tr');
-	var td = document.createElement('td');
+	var td = document.createElement('th');
 	td.textContent = '삭제';
 	headTr.appendChild(td);
 
@@ -47,6 +47,8 @@ function updateFnc(event) {
 	var ji = document.forms['myform']['job_id'].value;
 	var sa = document.forms['myform']['salary'].value;
 	// console.log(ei);
+	
+	console.log(document.getElementById(ei));
 
 	var param = `cmd=update&a=${ei}&b=${fn}&c=${ln}&d=${em}&e=${hd}&f=${ji}&g=${sa}`;
 	// var param = `empId=${ei}&fname=${fn}&lname=${ln}&email=${em}&hdate=${hd}&job=${ji}&salary=${sa}`;
@@ -59,8 +61,16 @@ function updateFnc(event) {
 		console.log(result);
 		if (result.retCode == 'Success') {
 			alert("정상적으로 변경되었습니다.")
+			var selectedTr = document.getElementById(ei);
+			selectedTr.children[1].textContent = result.retVal.firstName;
+			selectedTr.children[2].textContent = result.retVal.lastName;
+			selectedTr.children[3].textContent = result.retVal.email;
+			selectedTr.children[4].textContent = result.retVal.hireDate;
+			selectedTr.children[5].textContent = result.retVal.salary;
+			
 		} else {
-			alert("처리중 에러가 발생되었습니다.")
+			//alert("처리중 에러가 발생되었습니다.")
+			alert(result.retVal)
 		}
 	}
 }

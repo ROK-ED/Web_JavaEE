@@ -154,6 +154,9 @@ public class GetJsonServlet extends HttpServlet {
 				
 //				response.getWriter().println("{\"retCode\":\"Success\"}");
 				response.getWriter().println(obj);
+				
+//				response.getWriter().println("{\"retCode\":\"Success\"}");
+				response.getWriter().println(obj);
 			} else {
 				JSONObject err = new JSONObject();
 				err.put("retCode", "Fail");
@@ -167,9 +170,33 @@ public class GetJsonServlet extends HttpServlet {
 
 			// 처리결과 페이지에 출력
 			if (dao.updateEmployee(vo) != null) {
-				response.getWriter().println("{\"retCode\":\"Success\"}");
+				
+				JSONObject innerObj = new JSONObject();
+				innerObj.put("employeeId", vo.getEmployeeId());
+				innerObj.put("firstName", vo.getFirstName());
+				innerObj.put("lastName", vo.getLastName());
+				innerObj.put("email", vo.getEmail());
+				innerObj.put("hireDate", vo.getHireDate());
+				innerObj.put("salary", vo.getSalary());
+				
+				JSONObject obj = new JSONObject();
+				obj.put("retCode", "Success");
+				obj.put("retVal", innerObj);
+
+				response.getWriter().println(obj);
+
+				//response.getWriter().println(obj);
+				
+				//response.getWriter().println("{\"retCode\":\"Success\"}");
 			} else {
-				response.getWriter().println("{\"retCode\":\"Fail\"}");
+			
+				JSONObject err = new JSONObject();
+				err.put("retCode", "Fail");
+				err.put("retVal", "처리중 에러발생");
+//				response.getWriter().println("{\"retCode\":\"Fail\"}");
+				response.getWriter().println(err);
+
+				
 			}
 
 		} else if (cmd.equals("delete")) {
