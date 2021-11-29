@@ -148,7 +148,7 @@ public class GetJsonServlet extends HttpServlet {
 				innerObj.put("hireDate", vo.getHireDate());
 				innerObj.put("salary", vo.getSalary());
 				
-				JSONObject obj = new JSONObject();
+				JSONObject obj = new JSONObject ();
 				obj.put("retCode", "Success");
 				obj.put("retVal", innerObj);
 				
@@ -156,7 +156,7 @@ public class GetJsonServlet extends HttpServlet {
 				response.getWriter().println(obj);
 				
 //				response.getWriter().println("{\"retCode\":\"Success\"}");
-				response.getWriter().println(obj);
+
 			} else {
 				JSONObject err = new JSONObject();
 				err.put("retCode", "Fail");
