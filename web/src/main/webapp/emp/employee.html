@@ -1,34 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="./createTable2.js"></script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="./createTable2.js"></script>
+	<style>
+		form>label {
+			display: inline-block;
+			background-color: yellow;
+			width: 30%;
+			text-align: right;
+		}
+
+		form>input {
+			display: inline-block;
+			width: 60%;
+		}
+
+		form>input[type="submit"],
+		form>input[type="reset"],
+		form>input[type="button"] {
+			width: 30%;
+		}
+	</style>
 </head>
+
 <body>
+	<!-- 사원번호, 이름, 이메일, 입사일자, 급여 -->
+	<div id="addRow">
+		<form action="../GetJsonServlet" name="myform" method="post" onsubmit="submitFnc(event)">
+			<label for="employee_id">사원번호</label>
+			<input type="number" name="employee_id" id="employee_id">
+			<label for="first_name">이름</label>
+			<input type="text" name="first_name" id="first_name">
+			<label for="last_name">성씨</label>
+			<input type="text" name="last_name" id="last_name">
+			<label for="email">이메일</label>
+			<input type="text" name="email" id="email">
+			<input type="hidden" name="job_id" value="IT_PROG">
+			<label for="hire_date">입사일자</label>
+			<input type="date" name="hire_date" id="hire_date">
+			<label for="salary">급여</label>
+			<input type="number" name="salary" id="salary">
+			<input type="submit" value="저장">
+			<input type="reset" value="취소">
+			<input type="button" value="수정" onclick="updateFnc(event)">
+		</form>
+	</div>
 	<h3>사원리스트</h3>
 	<div id="show"></div>
+	<script src="./employee.js"></script>
 	<script>
-		//Inversion of Control : tomcat
-		var ajax = new XMLHttpRequest();
-		ajax.open('post', '../GetJsonServlet');
-		ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		ajax.send("fname=Hong&lname=kildong&empId=300");
-		ajax.onload = function () {
-			console.log(JSON.parse(ajax.responseText));
-		}
-	
-		var xhtp = new XMLHttpRequest();
-		xhtp.open('get', '../GetJsonServlet');
-		xhtp.send();
-		xhtp.onload = function() {
-			var data = JSON.parse(xhtp.responseText);
-			console.log(data);
-			//필요한 컬럼필드
-			var fields = ['empId','fname','lname'];
-			var table = createTable(fields,data);
-			document.getElementById('show').appendChild(table);
-		}
+		// Inversion of Control : tomcat
+		// 	var ajax = new XMLHttpRequest();
+		// 	ajax.open('post', '../GetJsonServlet');
+		// 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		// 	ajax.send("fname=Hong&lname=kildong&empId=303");
+		// 	ajax.onload = function () {
+		// 		var result = JSON.parse(ajax.responseText);
+		// 		console.log(result);
+		// 		if (result.retCode == 'Success') {
+		// 			alert("정상적으로 입력되었습니다.")
+		// 		} else {
+		// 			alert("처리중 에러가 발생되었습니다.") ///에러코드 안뜸//////////////////////////////
+		// 		}
+		// 	}
+
+		
+		
 	</script>
 </body>
+
 </html>

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.emp.EmployeeVO;
+
 /**
  * Servlet implementation class GetJsonServlet
  */
@@ -39,7 +41,9 @@ public class GetJsonServlet extends HttpServlet {
 		sb.append("[");
 		while (true) {
 			sb.append("{\"empId\":" + list.get(cnt).getEmplyeeId() + ",\"fname\":\"" + list.get(cnt).getFirstName()
-					+ "\",\"lname\":\"" + list.get(cnt).getLastName() + "\"}");
+					+ "\",\"lname\":\"" + list.get(cnt).getLastName() + "\",\"email\":\"" + list.get(cnt).getEmail()
+					+ "\",\"hdate\":\"" + list.get(cnt).getHireDate() + "\",\"salary\":\"" + list.get(cnt).getSalary()
+					+ "\"}");
 			cnt++;
 			if (cnt == size) {
 				break;
@@ -60,19 +64,80 @@ public class GetJsonServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String firstName = request.getParameter("fname");
-		String lastName = request.getParameter("lname");
-		String empId = request.getParameter("empId");
+//		String firstName = request.getParameter("fname");
+//		String lastName = request.getParameter("lname");
+//		String empId = request.getParameter("empId");
 
-		System.out.println("fname: " + firstName);
-		System.out.println("lname: " + lastName);
-		System.out.println("empId: " + empId);
+//		System.out.println("fname: " + firstName);
+//		System.out.println("lname: " + lastName);
+//		System.out.println("empId: " + empId);
+//		
+
+		String cmd = request.getParameter("cmd"); /////////////
+
+		String empId = request.getParameter("a");
+		String firstName = request.getParameter("b");
+		String lastName = request.getParameter("c");
+		String email = request.getParameter("d");
+		String hireDate = request.getParameter("e");
+		String jobId = request.getParameter("f");
+		String salary = request.getParameter("g");
+
+		System.out.println("b: " + firstName);
+		System.out.println("c: " + lastName);
+		System.out.println("a: " + empId);
 
 		EmpDAO dao = new EmpDAO();
-		dao.insertEmp(empId, firstName, lastName, "test@meail.com", "IT_PROG", "2020-05-05");
-		// {"retCode":"
-		response.getWriter().println("");
 
+		EmployeeVO vo = new EmployeeVO();
+//		vo.setEmployeeId(Integer.parseInt(empId));
+//		vo.setFirstName(firstName);
+//		vo.setLastName(lastName);
+//		vo.setEmail("asdf@asdf.com");
+//		vo.setJobId("IT_PROG");
+//		vo.setHireDate("2020-05-05");
+//		vo.setSalary(2000);
+
+		vo.setEmployeeId(Integer.parseInt(empId));
+		vo.setFirstName(firstName);
+		vo.setLastName(lastName);
+		vo.setEmail(email);
+		vo.setJobId(jobId);
+		vo.setHireDate(hireDate);
+		if(!cmd.equals("delete")) {
+			
+			vo.setSalary(Integer.parseInt(salary));
+		}
+
+		// 처리결과 페이지에 출력
+//		dao.insertEmp(empId, firstName, lastName, "test@meail.com", "IT_PROG", "2020-05-05");
+		if (cmd.equals("insert")) {
+
+			if (dao.insertEmp(vo)) {
+				response.getWriter().println("{\"retCode\":\"Success\"}");
+			} else {
+				response.getWriter().println("{\"retCode\":\"Fail\"}");
+			}
+			// {"retCode":"
+//		response.getWriter().println("");
+		} else if (cmd.equals("update")) {
+
+			// 처리결과 페이지에 출력
+			if (dao.updateEmployee(vo) != null) {
+				response.getWriter().println("{\"retCode\":\"Success\"}");
+			} else {
+				response.getWriter().println("{\"retCode\":\"Fail\"}");
+			}
+
+		} else if (cmd.equals("delete")) {
+
+			// 처리결과 페이지에 출력
+			if (dao.deleteEmployee(empId)) {
+				response.getWriter().println("{\"retCode\":\"Success\"}");
+			} else {
+				response.getWriter().println("{\"retCode\":\"Fail\"}");
+			}
+		}
 	}
 
 }
