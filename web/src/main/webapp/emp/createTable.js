@@ -2,7 +2,9 @@
 function createTable(titleAry, dataAry) {
     //tr 생성하는 함수.
     function makeRow(obj) {
+		//console.log(obj.employeeId);
         var tr = document.createElement('tr');
+		tr.setAttribute("id",obj.employeeId);// tr에 id속성으로 employeeId 값으로 
         titleAry.forEach(field => {
             var td = document.createElement('td');
             td.textContent = obj[field];

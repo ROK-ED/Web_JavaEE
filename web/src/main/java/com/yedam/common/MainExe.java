@@ -89,7 +89,7 @@ public class MainExe {
 		StringBuffer sb = new StringBuffer();
 		sb.append("[");
 		while(true) {
-			sb.append("{\"empId\":"+list.get(cnt).getEmplyeeId()+",\"fname\":\""+list.get(cnt).getFirstName()+"\",\"lname\":\""+list.get(cnt).getLastName()+"\"}");
+			sb.append("{\"empId\":"+list.get(cnt).getEmployeeId()+",\"fname\":\""+list.get(cnt).getFirstName()+"\",\"lname\":\""+list.get(cnt).getLastName()+"\"}");
 			cnt++;
 			if(cnt  == size) {
 				break;
@@ -111,7 +111,7 @@ public class MainExe {
 		for (int i=0; i< cnt; i++) {
 //			System.out.println(list.get(i).toString());
 			sb.append("<record>");
-			sb.append("<empId>"+list.get(i).getEmplyeeId()+"</empId>");
+			sb.append("<empId>"+list.get(i).getEmployeeId()+"</empId>");
 			sb.append("<firstName>"+list.get(i).getFirstName()+"</firstName>");
 			sb.append("<lastName>"+list.get(i).getLastName()+"</lastName>");
 			

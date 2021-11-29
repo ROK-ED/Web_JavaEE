@@ -24,7 +24,10 @@ xhtp.onload = function() {
 		butn.textContent = '삭제';
 		butn.addEventListener('click', delEmp);
 		td.appendChild(butn);
-		trs[i].appendChild(butn);
+		//trs[i].appendChild(butn);
+		trs[i].appendChild(td);
+		
+		
 		trs[i].addEventListener('click', trClick);
 	}
 }// 리스트 보여주는부분.
