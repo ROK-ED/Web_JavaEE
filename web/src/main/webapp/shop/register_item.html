@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>register_item.html</title>
+</head>
+
+<body>
+
+	<fieldset>
+		<legend>상품등록</legend>
+		<form action="../ShopItemServlet" name="registerItem"
+			enctype="multipart/form-data" method="post">
+			상품코드: <input type="text" name="item_code"><br> 상품명: <input
+				type="text" name="item_name"><br> 상품설명:
+			<textarea name="item_desc"></textarea>
+			<br> 평점: <input type="text" name="like_it" cols="25" rows='3'><br>
+			상품가격: <input type="number" name="origin_price"><br>
+			할인가격: <input type="number" name="sale_price"><br> 이미지: <input
+				type="file" name="image"><br> <input type="submit"
+				value="저장"><input type="reset" value="취소">
+		</form>
+
+	</fieldset>
+
+	<h3>상품리스트</h3>
+	<div id="show"></div>
+
+
+	<script>
+		var frm = document.forms.registerItem;
+		frm.addEventListener('submit', function(e) {
+			e.preventDefault();
+
+			console.log(e.target);
+			var data = new FormData(frm);
+
+			var xhtp = new XMLHttpRequest();
+			xhtp.open('post', frm.getAttribute('action'));
+			xhtp.send(data);
+			xhtp.onload = function() {
+				console.log('호출성공');
+			}
+
+		});
+	</script>
+
+	<script src="./register_item.js"></script>
+
+	<!-- 
+	테이블 만들어야 실행가능
+	create table shop_item( item_code varchar2(10) primary key, item_name
+	varchar2(100), item_desc varchar2(1000), origin_price number,
+	sale_price number, like_it number, image varchar2(100) ); -->
+
+</body>
+
+</html>
