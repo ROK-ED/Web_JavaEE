@@ -4,6 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <title>register_item.html</title>
+<script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+	CKEDITOR.replace("item_desc",{
+		filebrowserUploadUrl:'../ShopItemPutServlet'
+	});
+	});
+</script>
 </head>
 
 <body>

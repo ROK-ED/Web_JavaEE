@@ -109,12 +109,18 @@
 
 				<script>
 					function makeOneProduct(obj) {
-						console.log(obj);
-						console.log(obj.itemCode);
-						console.log(obj.likeIt);
-						console.log((String)(obj.likeIt).substr(0,1));
-						console.log((String)(obj.likeIt).substr(2,1));
-						console.log(Math.floor(obj.likeIt));
+						//console.log(obj);
+						//console.log(obj.itemCode);
+						//console.log(obj.likeIt);
+						//var fill = (String)(obj.likeIt).substr(0,1);
+					
+									
+						//console.log(typeof fill);
+						//console.log(typeof parseInt(fill));
+						//console.log(typeof obj.likeIt);
+						//console.log((String)(obj.likeIt).substr(0,1));
+						//console.log((String)(obj.likeIt).substr(2,1));
+						//console.log(Math.floor(obj.likeIt));
 
 						//아이템 레이아웃
 						var div = document.createElement('div');
@@ -154,17 +160,26 @@
 						//아이템 내용 ~제목 레이아웃 ~별(평점)
 						var div_star = document.createElement('div');
 						div_star.className = "d-flex justify-content-center small text-warning mb-2";
-						//별만들기
-						// for () {
-						//     var div_star_fill = document.createElement('div');
-						//     div_star_fill.className = "bi-star-fill";
-
-						// }
+						//별만들기 
+						//console.log((String)(obj.likeIt).substr(0,1));
+						//console.log((String)(obj.likeIt).substr(2,1));
+						var fill = (String)(obj.likeIt).substr(0,1);
+						//var inFill = integer.parseInt(fill);
+						if(parseInt(fill) != 0 ){
+						for (var i=0; i< parseInt(fill)  ; i++) {
+						     var div_star_fill = document.createElement('div');
+						     div_star_fill.className = "bi-star-fill";
+						     div_star.append(div_star_fill);
+						 }
+						}
 						// //반쪽별
-						// for () {
-						//     var div_star_half = document.createElement('div');
-						//     div_star_half.className = "bi-star-half";
-						//}
+						var half = (String)(obj.likeIt).substr(2,1);
+						if(parseInt(half) != 0){
+							 var div_star_half = document.createElement('div');
+						     div_star_half.className = "bi-star-half";
+						     div_star.append(div_star_half);
+						 
+						}
 
 						//아이템 내용 ~제목 레이아웃 ~할인전가격
 						var span = document.createElement('span');
@@ -188,9 +203,12 @@
 						a.setAttribute("href", "#")
 						a.textContent = "Add to cart";
 
-                        // div_star.append(div_star_fill, div_star_half);
+                        //div_star.append(div_star_fill, div_star_half);
                         div_card_body_text.append(h5, div_star, span);
                         div_card_body.appendChild(div_card_body_text);
+                        
+                        
+                        //div_card_body_text.textContent = obj.salePrice;//할인후 가격
                         div_card_footer_text.appendChild(a);
                         div_card_footer.appendChild(div_card_footer_text);
 						div_card.append(div_sale, img, div_card_body, div_card_footer);

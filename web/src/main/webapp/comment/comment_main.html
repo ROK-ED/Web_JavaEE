@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>comment_main.html</title>
+<style>
+  .comment {
+ border: 1px dotted blue;
+ margin-bottom: 1px;
+ }
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	$(document).ready(onradyFnc);
+	function onradyFnc() {
+		$.ajax({
+			url:'../CommentServlet',
+			method: 'get',
+			dataType: 'json',
+			success: loadCommentResult,
+			error: function (error) {
+				//console.log(error);
+				window.alert(`Error: ${error.status}, Message: ${error.statusText}`);//서버쪽 에러는 이쪽으로 출력
+			}
+		});
+		
+	}
+	
+	//리스트 가지고오는것 성공 실행한 콜백함수
+	function loadCommentResult(result) {
+		//console.log(result);
+		
+		if(result.retCode == 'Success'){
+		var data = result.retVal;
+		data.forEach(item => {
+			$('#commentList').append(makeCommentView(item));	
+		});
+		}else{
+			window.alert(result.retVal);//내용쪽 에러는 이쪽으로 출력
+		}
+	}
+	
+	//데이터 한건 가져와서 출력하는 부분.
+	function makeCommentView(comment) {
+		var div = $('<div>');
+		$(div).attr("id", comment.id);
+		$(div).addClass('comment');
+		/* $(div).html(`<strong>${comment.name}</strong> ${comment.content}
+						<input type="button" value="수정" onclick="viewUpdateForm(${comment.id})>"
+						<input type="button" value="삭제" onclick="confirmDeletion(${comment.id})>"
+						`); */
+		$(div).append(//
+			$('<strong>').text(comment.name),
+			comment.content,
+			$('<input>').attr('type','button').val('수정').click(viewUpdateForm),
+			$('<input>').attr('type','button').val('삭제').click(confirmDeletion)
+		);
+		return div;
+	}
+	//수정버튼을 누르면 실행할 함수
+	function viewUpdateForm() {
+		
+	}
+	//삭제버튼을 누르면 실행할 함수
+	function confirmDeletion() {
+		
+	}
+	
+	//게시판 등록
+	function addComment() {
+		$.ajax({
+			url:'../CommentServlet',
+			method:'post',
+			data:{
+				cmd: 'insert',
+				name: $('form[name="addForm"]>input[type="text"]').val(),
+				content: $('form[name="addForm"]>textarea[name=\"content\"]').val()	
+			},
+			dataType: 'json',
+			success: addResult,
+			error: function (error) {
+				//console.log(error);
+				window.alert(`Error: ${error.status}, Message: ${error.statusText}`);//서버쪽 에러는 이쪽으로 출력
+			}
+		});
+	}
+	
+	//등록 콜백 함수.
+	function addResult(result) {
+		var obj =result.retVal;
+		$('#commentList').append(makeCommentView(obj));
+		//초기화
+		$('form[name="addForm"]>input[type="text"]').val("");
+		$('form[name="addForm"]>textarea').val("");
+		$('form[name="addForm"]>input[type="text"]').focus();
+		
+	}
+	
+</script>
+</head>
+<body>
+	<div id="commentList" ></div>
+	<!--글등록 화면  -->
+	<div id="commentAdd">
+		<form action="" name="addForm">
+			이름: <input type="text" name="name" size="10"><br> 내용:
+			<textarea name="content" cols="20" rows="2"></textarea>
+			<br> <input type="button" value="등록" onclick="addComment()">
+		</form>
+	</div>
+
+	<!--글수정 화면  -->
+	<div id="commentUpdate" style="display: none">
+		<form action="" name="updateForm">
+			<input type="hidden" name="id" value="" /> 
+			이름: <input type="text" name="name" size="10"><br> 
+			내용:<textarea name="content" cols="20" rows="2"></textarea><br> 
+			<input type="button" value="변경" onclick="updateComment()">
+			<input type="button" value="취소" onclick="cancelUpdate()">
+		</form>
+	</div>
+</body>
+</html>
+
+
+
+
+
+<!-- create table comments(
+id VARCHAR2(10),
+name VARCHAR2(100),
+content VARCHAR2(300)
+);
+
+create table id_repository(
+value NUMBER,
+name VARCHAR2(30)
+);
+
+insert into id_repository VALUES(0,'COMMENT');
+--1)
+select value from id_repository where name = 'COMMENT';
+
+insert into comments values(0 + 1 , 'user1' , '자바스크립트 질문있습니다.');
+update id_repository
+set value = 1
+where name = 'COMMENT';
+
+insert into comments values(1 + 1 , 'user2' , '자바스크립트 질문있습니다.@@');
+update id_repository
+set value = 2
+where name = 'COMMENT';
+
+create table faq (
+id VARCHAR2(10),
+name VARCHAR2(100),
+content VARCHAR2(300)
+);
+
+insert into id_repository values (0,'FAQ');
+select value from id_repository where name = 'FAQ';
+insert into faq values(0+1,'admin','강제퇴든');
+
+update id_repository
+set value = 1
+where name = 'FAQ';
+
+SELECT
+    *
+FROM comments; -->

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="../jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            //$('*').css('background-color', 'yellow');
+            //$('.active').css('background-color', 'yellow');
+            //$('table>tbody>tr').css('background-color','yellow');
+            $('.active').css('background-color', 'yellow');
+            $('tr[atr="active-tr"]').css('color', 'red');
+            //$('tr[atr!="active-tr"]').css('color', 'green');
+            $('tr:eq(5)').css('background-color', 'blue');
+            //$('tr:even').css('background-color', 'blue');
+            //$('tr:nth-child(2n+1)').css('background-color', 'green');
+            $('tr:first').css('background-color', 'blue');
+            //$('tr:gt(3)').css('background-color', 'red');
+            //$('tr:lt(3)').css('background-color', 'red');
+            
+        })
+    </script>
+</head>
+
+<body>
+    <div class="show">
+        <ul>
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Cherry</li>
+        </ul>
+        <table border="1" id="mytab" class="" style="width: 504px;">
+            <thead>
+                <tr>
+                    <th style="background-color: yellow; color: red;">firstName</th>
+                    <th>lastName</th>
+                    <th>email</th>
+                    <th>기능</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="active">
+                    <td>Hong</td>
+                    <td>kildong</td>
+                    <td>test@meail.com</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr class="active">
+                    <td>William</td>
+                    <td>Gietz</td>
+                    <td>WGIETZ</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr atr="active-tr">
+                    <td>Shelley</td>
+                    <td>Higgins</td>
+                    <td>SHIGGINS</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr>
+                    <td>Pat</td>
+                    <td>Fay</td>
+                    <td>PFAY</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr atr="active-tr">
+                    <td>Michael</td>
+                    <td>Hartstein</td>
+                    <td>MHARTSTE</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr>
+                    <td>Jennifer</td>
+                    <td>Whalen</td>
+                    <td>JWHALEN</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr atr="intive-tr">
+                    <td>Bruce</td>
+                    <td>Ernst</td>
+                    <td>BERNST</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr>
+                    <td>Alexander</td>
+                    <td>Hunold</td>
+                    <td>AHUNOLD</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr>
+                    <td>Lex</td>
+                    <td>De Haan</td>
+                    <td>LDEHAAN</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr>
+                    <td>Neena</td>
+                    <td>Kochhar</td>
+                    <td>NKOCHHAR</td>
+                    <td><button>삭제</button></td>
+                </tr>
+                <tr>
+                    <td>Steven</td>
+                    <td>King</td>
+                    <td>SKING</td>
+                    <td><button>삭제</button></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

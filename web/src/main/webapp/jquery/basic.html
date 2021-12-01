@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jquery연습</title>
+<style>
+.tbl {
+	border: 2px dotted red;
+}
+</style>
+<script src="../jquery-3.6.0.js"></script>
+<script>
+//document.addEventListener("DOMContentLoaded", function() {} 
+$(document).ready(function() {
+	
+	  var ul = $("<ul>");
+      var li = $('<li>').text('Apple');
+      $(ul).append( //
+          li,
+          $("<li>").text('Banana'), //
+          $('<li>').text('Cherry')
+      );
+      $('.show').append(ul);
+
+      $.ajax({
+          method: 'get',// get 이나 post
+          url: '../GetJsonServlet', //연결 서버
+          data: {
+              user_name: 'hong',
+              user_id: 'user1',
+              user_age: 10
+          },
+          dataType: 'json',
+          success: successFnc
+          ,
+          error: function (error){
+              console.error(error);
+          }
+      });
+
+      function successFnc (result) {
+          
+              console.log(result);
+              var table = $('<table>').attr({'border':'1',"id":'mytab'}).addClass('tbl');
+              var thead = $('<thead>').append(
+              		$('<tr>').append(
+              				$('<th>').text("firstName").css({'background-color':'yellow','color':'red'}),//
+              				$('<th>').text("lastName"),
+              				$('<th>').text("email"),
+              				$('<th>').text("기능")
+              				)
+              		) 
+              var tbody = $('<tbody>');
+              result.forEach(item => {
+              	var tr = $('<tr>')
+              	tr.append(//
+              		$('<td>').text(item.firstName)/*.css('background-color', "yellow").css('color','red')*/,
+              		$('<td>').text(item.lastName),
+              		$('<td>').text(item.email),
+              		//$('<td>').html('<button>삭제</button>'),
+              		$('<td>').html($('<button>').text('삭제').click(clickFnc))
+              	);
+              	tbody.append(tr);
+              });
+              table.append(thead, tbody);
+              $('.show').append(table);
+              
+              $('.show').before($('<button>').text('토글').click(toggleFnc))
+              
+              function toggleFnc() {
+					
+              	$('#mytab').toggleClass('tbl');
+                  	
+              
+              }
+              
+              //
+              if($('#mytab').hasClass('tbl')){
+              	//$('#mytab').removeClass('tbl');//클래스 삭제
+              	$('#mytab').width('500px');
+              }
+          
+             
+          } 
+
+      function clickFnc() {
+			alert('클릭!!');
+	  }
+	
+});
+
+   
+    </script>
+</head>
+
+<body>
+	<div class="show"></div>
+
+</body>
+
+</html>

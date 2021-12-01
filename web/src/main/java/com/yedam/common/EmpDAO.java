@@ -107,6 +107,30 @@ class Employee {
 }
 
 public class EmpDAO extends DAO {
+	//부서별 사원정보 챠트.
+	   public Map<String, Integer> getEmpByDepartment(){
+	      Map<String, Integer> map = new HashMap<String, Integer>();
+	      String sql = "select department_name, count(1) " //
+	            + "from employees e, departments d " //
+	            + "where e.department_id = d.department_id " //
+	            + "group by department_name";
+	      connect();
+	      try {
+	         stmt = conn.createStatement();
+	         rs = stmt.executeQuery(sql);
+	         while( rs.next()) {
+	            map.put(rs.getString(1), rs.getInt(2)); // sql의 select 의 첫번째 컬럼, 두번째 컬럼
+	         }
+	         return map;
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally {
+	         disconnect();
+	      }
+	      return null;
+	   }
+
 
 	// 한건조회(사원번호).
 	public EmployeeVO findEmployee(String empId) {
