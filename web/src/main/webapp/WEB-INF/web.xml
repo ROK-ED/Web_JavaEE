@@ -5,7 +5,19 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>web</display-name>
 	
-	<servlet>
+	
+	<!-- <servlet>
+		<servlet-name>serverSide</servlet-name>
+		<servlet-class>com.yedam.emp.EmpServerSideServ</servlet-class>
+	</servlet>
+	
+    <servlet-mapping>
+		<servlet-name>serverSide</servlet-name>
+		<url-pattern>/*</url-pattern> /* 어떤 서버명을 치더라도 이쪽으로 가겠다. 
+	</servlet-mapping> -->
+	
+	
+	<!-- <servlet>
 		<servlet-name>empData</servlet-name>
 		<servlet-class>com.yedam.emp.EmpDataServlet</servlet-class>
 	</servlet>
@@ -35,7 +47,7 @@
 	<servlet-mapping>
 		<servlet-name>empSubSide</servlet-name>
 		<url-pattern>/empSubSide</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 	
 	
 	
