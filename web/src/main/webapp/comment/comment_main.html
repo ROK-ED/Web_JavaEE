@@ -44,7 +44,12 @@
 	//데이터 한건 가져와서 출력하는 부분.
 	function makeCommentView(comment) {
 		var div = $('<div>');
-		$(div).attr("id", comment.id);
+		$(div).attr('id', comment.id);
+
+		$(div).data('id', comment.id);
+		$(div).data('name', comment.name);
+		$(div).data('content', comment.content);
+		
 		$(div).addClass('comment');
 		/* $(div).html(`<strong>${comment.name}</strong> ${comment.content}
 						<input type="button" value="수정" onclick="viewUpdateForm(${comment.id})>"
@@ -59,12 +64,70 @@
 		return div;
 	}
 	//수정버튼을 누르면 실행할 함수
-	function viewUpdateForm() {
+	function viewUpdateForm(e) {
+		//console.log(e);
+		//console.log(e.target.parentNode.getAttribute('id'));
+		var id = e.target.parentNode.getAttribute('id');
+		var name = e.target.parentNode.children[0].textContent;
+		var content = e.target.parentNode.childNodes[1].nodeValue;
+		//console.log(id,name,content);
+		
+		$.ajax({
+			url:'../CommentServlet',
+			method:'post',
+			data:{
+				id: id,
+				cmd: 'search'
+			},
+			dataType: 'json',
+			success: function (result) {
+				console.log(result);
+				$('#commentUpdate').css('display','block');
+				$('form[name="updateForm"]>input[name="id"]').val(result.retVal.id);
+				$('form[name="updateForm"]>input[name="name"]').val(result.retVal.name);
+				$('form[name="updateForm"]>textarea[name="content"]').val(result.retVal.content);
+			
+				//수정버튼 누른 대상 하위에 보여주도록
+				$(e.target.parentNode).after($('#commentUpdate'));
+				//after 해당요소 뒤에 삽입////////////////////////////////////////////////
+				
+				//등록화면 숨김
+				$("#commentAdd").hide();
+				//hide 화면에만 숨김/////////////////////////////////////////////////////
+			},
+			error: function (error) {
+				//console.log(error);
+				window.alert(`Error: ${error.status}, Message: ${error.statusText}`);//서버쪽 에러는 이쪽으로 출력
+			}
+		});
+		
+		
+		
 		
 	}
 	//삭제버튼을 누르면 실행할 함수
-	function confirmDeletion() {
-		
+	function confirmDeletion(e) {
+		if(confirm('삭제하시겠습니까?')){
+			var id = $(e.target.parentNode).attr('id');
+			$.ajax({
+				url:'../CommentServlet',
+				method:'post',
+				data:{
+					id: id,
+					cmd: 'delete'
+				},
+				dataType: 'json',
+				success: function (result) {
+					console.log(result);
+					alert(`id: ${result.retVal} 삭제되었습니다!!`)
+					$('#'+id).remove();
+				},
+				error: function (error) {
+					console.log(error);
+					alert(`삭제 처리중 에러가 발생했습니다.`)
+				}
+			});
+		}
 	}
 	
 	//게시판 등록
@@ -80,8 +143,8 @@
 			dataType: 'json',
 			success: addResult,
 			error: function (error) {
-				//console.log(error);
-				window.alert(`Error: ${error.status}, Message: ${error.statusText}`);//서버쪽 에러는 이쪽으로 출력
+				console.log(error);
+				//window.alert(`Error: ${error.status}, Message: ${error.statusText}`);//서버쪽 에러는 이쪽으로 출력
 			}
 		});
 	}
@@ -95,7 +158,50 @@
 		$('form[name="addForm"]>textarea').val("");
 		$('form[name="addForm"]>input[type="text"]').focus();
 		
+		
 	}
+	
+	//변경 버튼 클릭시. DB 반영. 화면 반영.
+	function updateComment() {
+		var idVal = $('form[name="updateForm"]>input[name="id"]').val();
+		var nameVal = $('form[name="updateForm"]>input[name="name"]').val();
+		var contentVal = $('form[name="updateForm"]>textarea[name="content"]').val();
+		$.ajax({
+			url:'../CommentServlet',
+			method:'post',
+			data:{
+				cmd: 'update',
+				id: idVal,
+				name: nameVal,
+				content: contentVal
+			},
+			dataType: 'json',
+			success: function (result) {
+				console.log(result);
+				//consloe.log($('#'+idVal));
+				//$('#'+idVal).childern().eq(0).val(result.retVal.name);
+				var newDiv = makeCommentView(result.retVal);
+				$('#'+idVal).replaceWith(newDiv);
+				$('#commentUpdate').hide();
+				$("#commentAdd").show(); 
+				
+				
+			},
+			error: function (error) {
+				console.log(error);
+				//window.alert(`Error: ${error.status}, Message: ${error.statusText}`);//서버쪽 에러는 이쪽으로 출력
+			}
+		});
+		
+	}
+	//취소버튼
+	function cancelUpdate() {
+		//$("#commentAdd").show(); 
+		$("#commentAdd").css('display','block');
+		//$('#commentUpdate').hide();
+		$('#commentUpdate').css('display','none');
+	}
+	
 	
 </script>
 </head>
@@ -104,8 +210,8 @@
 	<!--글등록 화면  -->
 	<div id="commentAdd">
 		<form action="" name="addForm">
-			이름: <input type="text" name="name" size="10"><br> 내용:
-			<textarea name="content" cols="20" rows="2"></textarea>
+			이름: <input type="text" name="name" size="10"><br> 
+			내용: <textarea name="content" cols="20" rows="2"></textarea>
 			<br> <input type="button" value="등록" onclick="addComment()">
 		</form>
 	</div>

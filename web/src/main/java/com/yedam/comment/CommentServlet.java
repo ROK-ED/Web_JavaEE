@@ -64,8 +64,12 @@ public class CommentServlet extends HttpServlet {
 		response.setContentType("text/json;charset=UTF-8");
 
 		String cmd = request.getParameter("cmd");
+		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String content = request.getParameter("content");
+
+		CommentDAO dao = new CommentDAO();
+		JSONObject obj = new JSONObject();
 
 		if (cmd.equals("insert")) {
 
@@ -75,8 +79,6 @@ public class CommentServlet extends HttpServlet {
 			vo.setCotent(content);
 			vo.setName(name);
 
-			CommentDAO dao = new CommentDAO();
-			JSONObject obj = new JSONObject();
 			try {
 				dao.insertComment(vo);
 				JSONObject inobj = new JSONObject();
@@ -95,10 +97,58 @@ public class CommentServlet extends HttpServlet {
 			}
 			response.getWriter().print(obj.toString());
 		} else if (cmd.equals("update")) {
+			CommentVO vo = new CommentVO();
+			vo.setCotent(content);
+			vo.setId(id);
+			vo.setName(name);
 
+			try {
+				dao.updateComment(vo);
+				JSONObject ino = new JSONObject();
+				ino.put("id", vo.getId());
+				ino.put("name", vo.getName());
+				ino.put("content", vo.getCotent());
+
+				obj.put("retCode", "Success");
+				obj.put("retVal", ino);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				obj.put("retCode", "Fail");
+				obj.put("retVal", e.getMessage());
+			}
+			response.getWriter().print(obj.toString());
 		} else if (cmd.equals("delete")) {
+			try {
+				dao.deleteComment(id);
+				
+				obj.put("retCode", "Success");
+				obj.put("retVal", id);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				obj.put("retCode", "Fail");
+				obj.put("retVal", e.getMessage());
+			}
+			response.getWriter().print(obj.toString());
+		} else if (cmd.equals("search")) {
+			try {
+				CommentVO vo = dao.findComment(id);
+				JSONObject ino = new JSONObject();
+				ino.put("id", vo.getId());
+				ino.put("name", vo.getName());
+				ino.put("content", vo.getCotent());
 
+				obj.put("retCode", "Success");
+				obj.put("retVal", ino);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				obj.put("retCode", "Fail");
+				obj.put("retVal", e.getMessage());
+			}
+			response.getWriter().print(obj.toString());
 		}
-	}
+	}// end of doPost();
 
 }

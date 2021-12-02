@@ -58,7 +58,7 @@ public class CommentDAO extends DAO {
 
 	// 수정
 	public CommentVO updateComment(CommentVO vo) throws Exception {
-		String sql = "update comments set name=?, content=?, where id=?";
+		String sql = "update comments set name=?, content=? where id=?";
 		connect();
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1, vo.getName());
@@ -98,7 +98,7 @@ public class CommentDAO extends DAO {
 			vo.setName(rs.getString("name"));
 			vo.setCotent(rs.getString("content"));
 
-			disconnect();
+			//disconnect();
 			return vo;
 		}
 
