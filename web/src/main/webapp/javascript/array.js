@@ -48,13 +48,13 @@ function submitFnc(e) {
     // console.log(document.forms['myform'].elements[0]);
     // console.log(document.forms['myform'].elements[0].value);
     console.log(document.forms['myform'].elements['sno'].value);
-    
+
     // var s_no = document.querySelector('form>input[name="sno"]').value;
     // var s_name = document.querySelector('form>input[name="sname"]').value;
     // var s_phone = document.querySelector('form>input[name="sphone"]').value;
     // var s_birth = document.querySelector('form>input[name="sbirth"]').value;
     // console.log(s_no, s_name, s_phone, s_birth);
-    
+
     // var s_no = document.forms['myform'].elements['sno'].value;
     // var s_name = document.forms['myform'].elements['sname'].value;
     // var s_phone = document.forms['myform'].elements['sphone'].value;
