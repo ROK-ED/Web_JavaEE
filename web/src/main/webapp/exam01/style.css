@@ -1,0 +1,115 @@
+* {
+    /* border: 0.5px solid rgba(0, 0, 0, 0.157); */
+    margin: 0;
+}
+
+body {
+    border: 1px dotted green;
+    margin: 3px;
+    padding: 5px;
+}
+
+form {
+    border-top: 1.5px solid red;
+    height: 22vh;
+    padding-bottom: 1px;
+}
+
+form>label {
+    display: inline-block;
+    background-color: rgb(255, 255, 49);
+    width: 22vw;
+    /* margin: 0px; */
+    font-size: x-small;
+    text-align: center;
+}
+
+form>input[type="text"],
+form>input[type="number"] {
+    display: inline-block;
+    width: 50vw;
+    border: 1px solid gray;
+}
+
+form>input[type="submit"] {
+    display: inline-block;
+    width: 10vw;
+    font-size: x-small;
+    position: relative;
+    top: -15vh;
+    left: 80.85%;
+    border: 0.5px solid gray;
+    border-radius: 2px;
+}
+
+form>input[type="button"] {
+    display: inline-block;
+    width: 10vw;
+    font-size: x-small;
+    position: relative;
+    top: -10vh;
+    left: 70%;
+    border: 0.5px solid gray;
+    border-radius: 2px;
+}
+
+div {
+    border: 1px solid blue;
+   
+}
+
+table {
+    width: 100%;
+    border-width: 0px;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+
+}
+
+tr,
+td {
+    height: 22px;
+}
+
+thead {
+    background-color: rgb(56, 56, 56);
+    color: white;
+    font-size: x-small;
+   
+}
+
+input[type=checkbox] {
+    zoom: 0.65;
+
+}
+
+
+tbody {
+    font-size: x-small;
+
+}
+
+
+tbody>tr>td,
+tbody>tr>th {
+    border-top: 1px dotted gray;
+    border-bottom: 1px dotted gray;
+    
+}
+
+#tdy > tr:nth-child(1) > th {
+    border-left: 1px dotted gray;
+}
+
+#tdy > tr:nth-child(1) > td:nth-child(7){
+    border-right: 1px dotted gray;
+}
+
+
+
+tbody>tr>td>button {
+    font-size: xx-small;
+    width: 80px;
+    border: 0.5px solid gray;
+    border-radius: 2px;
+}
