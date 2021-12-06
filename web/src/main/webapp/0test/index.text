@@ -1,5 +1,6 @@
 html
 atag - 링크 심화 (참고)
+ <a href="#" id="phone_list">Top</a>
 block - 블럭 나눠서 이미지 설명
 charref - 메인화면 연습 및 특수문자 (참고)
 get - java 이용해서 sql에 내용입력 (참고)
@@ -18,3 +19,20 @@ table - 표만들기
 texttag - 글쓸때 종류 (참고)
 
 css
+animeition - 
+attr - 
+box - 
+combinator - 
+covid - 
+flex - 
+float - 
+grid - 
+homework - 
+layout - 
+m - 
+main - 
+position - 
+project - 
+sample - 
+transform - 
+transition - 
